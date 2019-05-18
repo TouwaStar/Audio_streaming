@@ -131,7 +131,8 @@ int accept_connection (int socket)
     socklen_t address_len = sizeof(struct sockaddr_in);
 
 
-    
+    fprintf(stdout,"Awaiting connection...\n");
+
     int peer_socket = accept(socket, (struct sockaddr *) &address, &address_len);
     client_ip = address.sin_addr;
     ip = inet_ntoa(client_ip);
@@ -180,21 +181,18 @@ void send_file_size(int socket, char* file_size, int size_of_file_size){
         }
 }
 
-void send_file_data(int socket,char* path_to_file){
-    int b;
-    char sendbuffer[100];
+void send_frames(int socket, int* frames, int items_to_send){
 
-    FILE *fp = fopen(path_to_file,"rb");
-
-    if(fp == NULL){
-        perror("File");
-        return ;
+    for(int i = 0; i< 10; i++){
+        char buff[sizeof(int)+6];
+        sprintf(buff,"PRE%dSUF",frames[i]);
+        fprintf(stdout,"Sending frame %d out of %d, content %s\n",i,items_to_send,buff);
+        int write_result = send(socket,buff,(sizeof(int)+6) * sizeof(buff),0);
+        if (write_result < 0){
+            fprintf(stderr,"Failed to send frame %d, write result: %d\n",i,write_result);
+            exit(1);
+        };
     }
-    
-     while( (b = fread(sendbuffer, 1, sizeof(sendbuffer), fp))>0 ){
-        send(socket, sendbuffer, b, 0);
-    }
-
 
 }
 
