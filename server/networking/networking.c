@@ -84,11 +84,9 @@ void receive_data (int socket)
 {
     int data;
     char buffer[BUFF + 1];
-    while ((data = read(socket, buffer, BUFF)) > 0)
-    {
-        buffer[data] = 0;
-        printf("\n%s", buffer);
-    }
+    data = recv(socket, buffer, BUFF,0);
+    buffer[data] = 0;
+    fprintf(stdout,"Received messsage %s\n", buffer);
 }
 
 int create_connection (int socket, const char * ip, int port, SOCKET_TYPE type)
@@ -170,29 +168,45 @@ int listen_to_socket (int socket, int log, SOCKET_TYPE type)
     return -1;
 }
 
-void send_file_size(int socket, char* file_size, int size_of_file_size){
-
-    ssize_t len = send(socket, file_size, size_of_file_size, 0);
+void send_message_int(int socket, int message, int message_size){
+    void * buff = calloc(1,message_size);
+    snprintf(buff,message_size,"PRE%dSUF",message);
+    ssize_t len = send(socket, buff, message_size, 0);
         if (len < 0)
         {
               fprintf(stderr, "Error on sending greetings --> %s", strerror(errno));
 
               exit(EXIT_FAILURE);
         }
+    
+    free(buff);
 }
 
-void send_frames(int socket, int* frames, int items_to_send){
 
-    for(int i = 0; i< 10; i++){
-        char buff[sizeof(int)+6];
-        sprintf(buff,"PRE%dSUF",frames[i]);
+
+void send_frames(int socket, int* frames, int items_to_send, int size_of_buffer){
+    //void * buff = calloc(1,size_of_buffer);
+
+    char buff[512];
+    
+    char buff_temp[22];
+    for(int i = 0; i< items_to_send-10;){
+        for(int j=0;j< 10;j++){
+            snprintf(buff_temp,size_of_buffer,"PRE%dSUF",frames[i+j]);
+            strcat(buff,buff_temp);
+
+        }
         fprintf(stdout,"Sending frame %d out of %d, content %s\n",i,items_to_send,buff);
-        int write_result = send(socket,buff,(sizeof(int)+6) * sizeof(buff),0);
+        int write_result = send(socket,buff,size_of_buffer,0);
         if (write_result < 0){
             fprintf(stderr,"Failed to send frame %d, write result: %d\n",i,write_result);
             exit(1);
         };
+        i = i+10;
+        buff[0]='\0';
+        buff_temp[0]='\0';
     }
+    //free(buff);
 
 }
 

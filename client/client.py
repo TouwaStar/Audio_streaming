@@ -5,25 +5,49 @@ import socket
 import struct
 import time
 import re
+import string
+import time
+import pyaudio
 
 
 def main():
-    data = 'a'
+    data = []
+    message_size_b = b''
+    
+    
+    pat = re.compile(b'PRE(.*?)SUF')
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             s.connect((HOST,PORT))
+            
+            message_size_b = s.recv(1024)
+            starttime = time.time()
+            s.send(b"GOT_SIZE")
+            message_size = pat.findall(message_size_b)[0]
+            message_size_unpacked = int(message_size)
             while(True):
-                time.sleep(3)
-                data =s.recv(1024)
-                print(data)
-                #data =int.from_bytes(data, byteorder='little', signed=True)
-                #print(data)
-                print(type(data))
+                data.append(s.recv(1024))
+                
     except ConnectionResetError:
         pass
     finally:
         pat = re.compile(b'PRE(.*?)SUF')
-        test = pat.findall(data)
-        print(test)
+        #sep = ''
+        #bfs = sep.join(data)
+        #test = pat.findall(bfs)
+        #print(test)
+        for message in data:
+            print(pat.findall(message))
+
+        print(time.time() - starttime)
+
+        p = pyaudio.PyAudio()
+        '''
+        stream = p.open(format=pyaudio.paFloat32,
+                        channels=2,
+                        rate=audio.sampling_rate,
+                        output=True)
+        '''
+
 if __name__ == "__main__":
     main()

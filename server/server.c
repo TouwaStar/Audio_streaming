@@ -70,8 +70,15 @@ int main(int argc, char **argv)
 
     int peer_socket = accept_connection(socket);
 
-    send_frames(peer_socket,frames,items_to_alocate);
+    int size_of_buffer = sizeof(int)+20;
     
+    send_message_int(peer_socket,size_of_buffer, size_of_buffer);
+    receive_data(peer_socket);
+    send_frames(peer_socket,frames,items_to_alocate,size_of_buffer);
+    
+
+
+
     Sleep(5000);
     free(frames);
     sf_close(file);
