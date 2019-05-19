@@ -10,23 +10,41 @@ import time
 import pyaudio
 
 
+def unpack_message(message):
+    print(message)
+    pat = re.compile(b'PRE(.*?)SUF')
+    return pat.findall(message)[0]
+
+
 def main():
     data = []
     message_size_b = b''
+    sampling_rate = 0
     
-    
-    pat = re.compile(b'PRE(.*?)SUF')
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             s.connect((HOST,PORT))
+
+            message = s.recv(1024)
+            print(message)
+            if(b'SAMPLING' in message):
+                s.send(b"GIVE_SAMPLING_RATE")
+                message = s.recv(1024)
+                print(message)
+                sampling_rate = int(unpack_message(message))
+                s.send(b"GOT_SAMPLING_RATE")
             
+            s.send(b"GIVE_SIZE")
             message_size_b = s.recv(1024)
             starttime = time.time()
             s.send(b"GOT_SIZE")
-            message_size = pat.findall(message_size_b)[0]
+            message_size = unpack_message(message_size_b)[0]
             message_size_unpacked = int(message_size)
             while(True):
-                data.append(s.recv(1024))
+                message = s.recv(message_size_unpacked)
+                if (b'EOM' in message):
+                    break
+                data.append(message)
                 
     except ConnectionResetError:
         pass
@@ -36,12 +54,12 @@ def main():
         #bfs = sep.join(data)
         #test = pat.findall(bfs)
         #print(test)
-        for message in data:
-            print(pat.findall(message))
+        #for message in data:
+        #    print(pat.findall(message))
 
         print(time.time() - starttime)
 
-        p = pyaudio.PyAudio()
+        #p = pyaudio.PyAudio()
         '''
         stream = p.open(format=pyaudio.paFloat32,
                         channels=2,

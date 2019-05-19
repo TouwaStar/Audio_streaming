@@ -72,9 +72,17 @@ int main(int argc, char **argv)
 
     int size_of_buffer = sizeof(int)+20;
     
-    send_message_int(peer_socket,size_of_buffer, size_of_buffer);
+    // Send Sampling Rate to Client
+    send_message_char(peer_socket,"SAMPLING",sizeof("SAMPLING"));
     receive_data(peer_socket);
-    send_frames(peer_socket,frames,items_to_alocate,size_of_buffer);
+    send_message_int(peer_socket,file_info.samplerate, sizeof(file_info.samplerate));
+    receive_data(peer_socket);
+
+    
+    send_message_int(peer_socket,size_of_buffer*20, size_of_buffer);
+    receive_data(peer_socket);
+    send_frames(peer_socket,frames,items_to_alocate,size_of_buffer,20);
+    send_message_char(peer_socket,"EOM",sizeof("EOM"));
     
 
 

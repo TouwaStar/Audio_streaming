@@ -169,9 +169,24 @@ int listen_to_socket (int socket, int log, SOCKET_TYPE type)
 }
 
 void send_message_int(int socket, int message, int message_size){
-    void * buff = calloc(1,message_size);
-    snprintf(buff,message_size,"PRE%dSUF",message);
-    ssize_t len = send(socket, buff, message_size, 0);
+    void * buff = calloc(1,message_size+22);
+    snprintf(buff,message_size+22,"PRE%dSUF",message);
+    ssize_t len = send(socket, buff, message_size+22, 0);
+        if (len < 0)
+        {
+              fprintf(stderr, "Error on sending greetings --> %s", strerror(errno));
+
+              exit(EXIT_FAILURE);
+        }
+    
+    free(buff);
+}
+
+void send_message_char(int socket, char* message, int message_size){
+    char * buff = calloc(1,message_size+22);
+    snprintf(buff,message_size+22,"PRE%sSUF",message);
+    ssize_t len = send(socket, buff, message_size+22, 0);
+    fprintf(stdout,"SENDING %s",buff);
         if (len < 0)
         {
               fprintf(stderr, "Error on sending greetings --> %s", strerror(errno));
@@ -184,29 +199,29 @@ void send_message_int(int socket, int message, int message_size){
 
 
 
-void send_frames(int socket, int* frames, int items_to_send, int size_of_buffer){
-    //void * buff = calloc(1,size_of_buffer);
+void send_frames(int socket, int* frames, int items_to_send, int size_of_frame, int frames_in_message){
+    char * buff = calloc(1,size_of_frame*frames_in_message);
+    char * buff_temp = calloc(1,size_of_frame);
 
-    char buff[512];
     
-    char buff_temp[22];
-    for(int i = 0; i< items_to_send-10;){
-        for(int j=0;j< 10;j++){
-            snprintf(buff_temp,size_of_buffer,"PRE%dSUF",frames[i+j]);
+    for(int i = 0; i< items_to_send-frames_in_message;){
+        for(int j=0;j< frames_in_message;j++){
+            snprintf(buff_temp,size_of_frame,"PRE%dSUF",frames[i+j]);
             strcat(buff,buff_temp);
 
         }
         fprintf(stdout,"Sending frame %d out of %d, content %s\n",i,items_to_send,buff);
-        int write_result = send(socket,buff,size_of_buffer,0);
+        int write_result = send(socket,buff,size_of_frame*frames_in_message,0);
         if (write_result < 0){
             fprintf(stderr,"Failed to send frame %d, write result: %d\n",i,write_result);
             exit(1);
         };
-        i = i+10;
+        i = i+frames_in_message;
         buff[0]='\0';
         buff_temp[0]='\0';
     }
-    //free(buff);
+    free(buff);
+    free(buff_temp);
 
 }
 
