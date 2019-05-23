@@ -1,4 +1,5 @@
-#include "./networking/networking.c"
+
+#include "communication.c"
 #include "./util/util.c"
 #include "./util/wav_parser.c"
 #include "./third_party/sndfile.h"
@@ -16,7 +17,7 @@ typedef enum{WINDOWS = 1, POSIX = 2} SYS;
 
 #include <time.h>
 
-char * TEMP = "C:\\Users\\Mateusz\\projekt_programowanie\\server\\audio_library\\Yamaha-V50-Rock-Beat-120bpm.wav";
+char * TEMP = "C:\\Users\\Mateusz\\projekt_programowanie\\server\\audio_library\\05 Track 5.wav";
 
 int main(int argc, char **argv)
 {
@@ -57,7 +58,6 @@ int main(int argc, char **argv)
     
 
     fprintf(stdout,"Number of frames in file: %I64i\n", file_info.frames);
-
     fprintf(stdout,"Number of frames read: %I64i\n",sf_readf_int(file, frames, file_info.frames));
     fprintf(stdout,"Size of single frame: %d\n", sizeof(frames[0]));
 
@@ -72,15 +72,12 @@ int main(int argc, char **argv)
 
     int size_of_buffer = sizeof(int)+20;
     
-    // Send Sampling Rate to Client
-    send_message_char(peer_socket,"SAMPLING",sizeof("SAMPLING"));
-    receive_data(peer_socket);
-    send_message_int(peer_socket,file_info.samplerate, sizeof(file_info.samplerate));
-    receive_data(peer_socket);
-
+    // Send properties to client
+    send_audio_property(peer_socket, file_info.samplerate);
+    send_audio_property(peer_socket, file_info.channels);
+    // Send size of frame * number of frames as the size of buffer
+    send_audio_property(peer_socket, size_of_buffer*20);
     
-    send_message_int(peer_socket,size_of_buffer*20, size_of_buffer);
-    receive_data(peer_socket);
     send_frames(peer_socket,frames,items_to_alocate,size_of_buffer,20);
     send_message_char(peer_socket,"EOM",sizeof("EOM"));
     
