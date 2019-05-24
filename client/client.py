@@ -8,6 +8,7 @@ import re
 import string
 import time
 import pyaudio
+import numpy
 
 
 def unpack_message(message):
@@ -59,14 +60,17 @@ class Client():
         print(f"Initializing audio stream with\nchannels: {self.channels}\nsampling rate: {self.sampling_rate}")
         self._pyaudio = pyaudio.PyAudio()
         self._stream = self._pyaudio.open(format=pyaudio.paInt32,
-                        channels=1,
+                        channels=self.channels,
                         rate=self.sampling_rate,
                         output=True)
 
     def play_streamed_data(self, audio_frame):
-        #print(f"writing {audio_frame} to audio stream")
-        for el in audio_frame:
-            self._stream.write(hex(int(el)),exception_on_underflow=True)
+        # print(f"writing {audio_frame} to audio stream")
+        # for el in audio_frame:
+        ndar = numpy.zeros(len(audio_frame),numpy.int32)
+        for index, el in enumerate(audio_frame):
+            ndar[index] = el
+        self._stream.write(ndar.tobytes())
 
     def stop_audio_stream(self):
         self._stream.stop_stream()

@@ -59,8 +59,10 @@ int main(int argc, char **argv)
 
     fprintf(stdout,"Number of frames in file: %I64i\n", file_info.frames);
     fprintf(stdout,"Number of frames read: %I64i\n",sf_readf_int(file, frames, file_info.frames));
-    fprintf(stdout,"Size of single frame: %d\n", sizeof(frames[0]));
-
+    //fprintf(stdout,"Size of single frame: %d\n", sizeof(frames[0]));
+    //  for( int i = 5000; i <5100;i++){
+    //      fprintf(stdout,"Example frame %f\n",frames[i]);
+    //  }
     
     int socket = create_socket(TCP);
     bind_port(socket, port);
@@ -70,15 +72,15 @@ int main(int argc, char **argv)
 
     int peer_socket = accept_connection(socket);
 
-    int size_of_buffer = sizeof(int)+20;
+    int size_of_buffer = sizeof(int)*240+240; // HOW BIG THIS THING NEEDS TO BEE TODO
     
     // Send properties to client
     send_audio_property(peer_socket, file_info.samplerate);
     send_audio_property(peer_socket, file_info.channels);
     // Send size of frame * number of frames as the size of buffer
-    send_audio_property(peer_socket, size_of_buffer*20);
+    send_audio_property(peer_socket, size_of_buffer*240);
     
-    send_frames(peer_socket,frames,items_to_alocate,size_of_buffer,20);
+    send_frames(peer_socket,frames,items_to_alocate,size_of_buffer,240);
     send_message_char(peer_socket,"EOM",sizeof("EOM"));
     
 
