@@ -200,15 +200,18 @@ void send_message_char(int socket, char* message, int message_size){
 
 
 void send_frames(int socket, int* frames, int items_to_send, int size_of_frame, int frames_in_message){
-    char * buff = calloc(1,size_of_frame*frames_in_message);
-    char * buff_temp = calloc(1,size_of_frame);
+    //char * buff = calloc(1,size_of_frame*frames_in_message);
+    
 
     
     for(int i = 0; i< items_to_send-frames_in_message;){
+        int offset = 0;
+        char * buff = calloc(1,size_of_frame*frames_in_message);
         for(int j=0;j< frames_in_message;j++){
-            snprintf(buff_temp,size_of_frame,"PRE%dSUF",frames[i+j]);
-            strcat(buff,buff_temp);
-
+            offset += snprintf(buff+offset,size_of_frame,"PRE%dSUF",frames[i+j]);
+            if( offset <0){
+                fprintf(stderr,"Failed to prepare frame for sending\n");
+            }
         }
         fprintf(stdout,"Sending frame %d out of %d, content %s\n",i,items_to_send,buff);
         int write_result = send(socket,buff,size_of_frame*frames_in_message,0);
@@ -217,11 +220,10 @@ void send_frames(int socket, int* frames, int items_to_send, int size_of_frame, 
             exit(1);
         };
         i = i+frames_in_message;
-        buff[0]='\0';
-        buff_temp[0]='\0';
+        
+        free(buff);
     }
-    free(buff);
-    free(buff_temp);
+    fprintf(stdout,"Sent all frames\n");
 
 }
 

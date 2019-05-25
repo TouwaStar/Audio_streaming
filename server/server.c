@@ -18,7 +18,7 @@ typedef enum{WINDOWS = 1, POSIX = 2} SYS;
 #include <time.h>
 
 char * TEMP = "C:\\Users\\Mateusz\\projekt_programowanie\\server\\audio_library\\05 Track 5.wav";
-
+//char * TEMP = "C:\\Users\\Mateusz\\projekt_programowanie\\server\\audio_library\\Yamaha-V50-Rock-Beat-120bpm.wav";
 int main(int argc, char **argv)
 {
     if (SYSTEM == WINDOWS){
@@ -72,15 +72,15 @@ int main(int argc, char **argv)
 
     int peer_socket = accept_connection(socket);
 
-    int size_of_buffer = sizeof(int)*240+240; // HOW BIG THIS THING NEEDS TO BEE TODO
+    int size_of_frame = sizeof(int)+20; // HOW BIG THIS THING NEEDS TO BEE TODO
     
     // Send properties to client
     send_audio_property(peer_socket, file_info.samplerate);
     send_audio_property(peer_socket, file_info.channels);
     // Send size of frame * number of frames as the size of buffer
-    send_audio_property(peer_socket, size_of_buffer*240);
+    send_audio_property(peer_socket, size_of_frame*240);
     
-    send_frames(peer_socket,frames,items_to_alocate,size_of_buffer,240);
+    send_frames(peer_socket,frames,items_to_alocate,size_of_frame,240);
     send_message_char(peer_socket,"EOM",sizeof("EOM"));
     
 

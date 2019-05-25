@@ -9,6 +9,7 @@ import string
 import time
 import pyaudio
 import numpy
+import array
 
 
 def unpack_message(message):
@@ -65,12 +66,23 @@ class Client():
                         output=True)
 
     def play_streamed_data(self, audio_frame):
-        # print(f"writing {audio_frame} to audio stream")
+        print(f"writing {audio_frame} to audio stream")
         # for el in audio_frame:
-        ndar = numpy.zeros(len(audio_frame),numpy.int32)
-        for index, el in enumerate(audio_frame):
-            ndar[index] = el
-        self._stream.write(ndar.tobytes())
+        
+        # tim = time.time()
+        # ndar = numpy.zeros(len(audio_frame),numpy.int32)
+        # for index, el in enumerate(audio_frame):
+        #     ndar[index] = el
+        # # self._stream.write(ndar.tobytes())
+        
+        # print(time.time() - tim)
+        # tim = time.time()
+        intel = array.array('l')
+        for el in audio_frame:
+            intel.append(int(el))
+        # print(time.time() - tim)
+        self._stream.write(intel.tobytes())
+        # time.sleep(5000)
 
     def stop_audio_stream(self):
         self._stream.stop_stream()
@@ -90,8 +102,11 @@ def main():
             client.get_channels(s)
             client.get_data_message_size(s)
             client.initialize_audio_stream()
+            temp_ind = 0
             while client.retrieve_audio_data(s):
-                client.play_streamed_data(client.data[-1])
+                if len(client.data)-1 != temp_ind:
+                    temp_ind = len(client.data)-1
+                    client.play_streamed_data(client.data[len(client.data)-1])
                 
     except ConnectionResetError:
         pass
