@@ -6,14 +6,9 @@
 
 typedef enum{WINDOWS = 1, POSIX = 2} SYS;
 
-#ifdef _WIN32
-    #define SYSTEM WINDOWS
-#else 
-    #define SYSTEM POSIX
-#endif
-
 #define QUEUE 256
 #define PORT 6999
+#define FRAMES_IN_MESSAGE 240
 
 #include <time.h>
 
@@ -51,15 +46,17 @@ int main(int argc, char **argv)
 
     file = sf_open(TEMP, SFM_READ, &file_info);
 
-    fprintf(stdout,"Sampling rate: %d\n",file_info.samplerate);
-    fprintf(stdout, "Number of channels: %d\n",file_info.channels);
     int items_to_alocate = file_info.frames * file_info.channels ;
     int *frames = calloc(items_to_alocate, sizeof(int));
     
 
+
+
+    fprintf(stdout,"Sampling rate: %d\n",file_info.samplerate);
+    fprintf(stdout,"Number of channels: %d\n",file_info.channels);
     fprintf(stdout,"Number of frames in file: %I64i\n", file_info.frames);
     fprintf(stdout,"Number of frames read: %I64i\n",sf_readf_int(file, frames, file_info.frames));
-    //fprintf(stdout,"Size of single frame: %d\n", sizeof(frames[0]));
+    fprintf(stdout,"Size of single frame: %d\n", sizeof(frames[0]));
     //  for( int i = 5000; i <5100;i++){
     //      fprintf(stdout,"Example frame %f\n",frames[i]);
     //  }
@@ -77,8 +74,9 @@ int main(int argc, char **argv)
     // Send properties to client
     send_audio_property(peer_socket, file_info.samplerate);
     send_audio_property(peer_socket, file_info.channels);
+
     // Send size of frame * number of frames as the size of buffer
-    send_audio_property(peer_socket, size_of_frame*240);
+    send_audio_property(peer_socket, size_of_frame*FRAMES_IN_MESSAGE);
     
     send_frames(peer_socket,frames,items_to_alocate,size_of_frame,240);
     send_message_char(peer_socket,"EOM",sizeof("EOM"));

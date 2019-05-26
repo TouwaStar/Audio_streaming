@@ -67,22 +67,10 @@ class Client():
 
     def play_streamed_data(self, audio_frame):
         print(f"writing {audio_frame} to audio stream")
-        # for el in audio_frame:
-        
-        # tim = time.time()
-        # ndar = numpy.zeros(len(audio_frame),numpy.int32)
-        # for index, el in enumerate(audio_frame):
-        #     ndar[index] = el
-        # # self._stream.write(ndar.tobytes())
-        
-        # print(time.time() - tim)
-        # tim = time.time()
         intel = array.array('l')
         for el in audio_frame:
             intel.append(int(el))
-        # print(time.time() - tim)
         self._stream.write(intel.tobytes())
-        # time.sleep(5000)
 
     def stop_audio_stream(self):
         self._stream.stop_stream()
