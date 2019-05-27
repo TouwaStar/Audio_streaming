@@ -25,12 +25,22 @@ class Client():
         self.channels = None
         self._pyaudio = None
         self._stream = None
+        self.song_list = []
 
     def _retrieve_message(self, socket, message, size=1024):
         socket.send(b'GIVE_'+message)
         message = socket.recv(size)
         socket.send(b'GOT_'+message)
         return message
+
+    def get_song_list(self, socket):
+        unpacked = b''
+        while b'EOM' not in unpacked:
+            message = socket.recv(1024)
+            unpacked = unpack_message(message)[0]
+            self.song_list.append(unpacked)
+        print(f"Received Song List\n{self.song_list}")
+
 
     def get_sampling(self, socket):
         message = self._retrieve_message(socket, b"SAMPLING_RATE")
@@ -86,6 +96,7 @@ def main():
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             s.connect((HOST,PORT))
 
+            client.get_song_list(s)
             client.get_sampling(s)
             client.get_channels(s)
             client.get_data_message_size(s)

@@ -7,6 +7,15 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
+#ifdef _WIN32
+    #define SYSTEM WINDOWS
+#else 
+    #define SYSTEM POSIX
+#endif
+
+
+#include <dirent.h>
+
 int open_file(char* path){
         
     int fd = open(path, O_RDONLY);
@@ -18,6 +27,30 @@ int open_file(char* path){
         }
         return fd;
 }
+
+char** get_files_in_directory( char* directory, int* number_of_files){
+    DIR *d;
+    struct dirent *dir;
+    d = opendir(directory);
+    
+    char **files = calloc(100,64*sizeof(char*));
+    if (d)
+    {
+        int i = 0;
+        fprintf(stdout,"Retrieving available music files\n");
+        while ((dir = readdir(d)) != NULL)
+        {
+            files[i] = malloc((64));
+            files[i] = dir->d_name;
+            fprintf(stdout,"%s\n", dir->d_name);
+            i++;
+        }
+        closedir(d);
+        *number_of_files = i+1;
+    }
+    return files;
+}
+
 
 void get_file_stat(int fd, struct stat *file_stat){
     /* Get file stats */

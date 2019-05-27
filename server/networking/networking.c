@@ -174,7 +174,7 @@ void send_message_int(int socket, int message, int message_size){
     ssize_t len = send(socket, buff, message_size+22, 0);
         if (len < 0)
         {
-              fprintf(stderr, "Error on sending greetings --> %s", strerror(errno));
+              fprintf(stderr, "Error on sending message --> %s", strerror(errno));
 
               exit(EXIT_FAILURE);
         }
@@ -183,13 +183,20 @@ void send_message_int(int socket, int message, int message_size){
 }
 
 void send_message_char(int socket, char* message, int message_size){
-    char * buff = calloc(1,message_size+22);
-    snprintf(buff,message_size+22,"PRE%sSUF",message);
-    ssize_t len = send(socket, buff, message_size+22, 0);
+    
+    fprintf(stdout,"SENDING %s",message);
+    char * buff = calloc(1,message_size+200);
+    fprintf(stdout,"SENDING %s",message);
+    int result = snprintf(buff,message_size+200,"PRE%sSUF",message);
+    if(result < 0){
+        fprintf(stderr, "Encoding error");
+    }
+    fprintf(stdout,"TEST %d",result);
     fprintf(stdout,"SENDING %s",buff);
+    ssize_t len = send(socket, buff, message_size+22, 0);
         if (len < 0)
         {
-              fprintf(stderr, "Error on sending greetings --> %s", strerror(errno));
+              fprintf(stderr, "Error on sending message --> %s", strerror(errno));
 
               exit(EXIT_FAILURE);
         }

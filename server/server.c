@@ -16,14 +16,14 @@ char * TEMP = "C:\\Users\\Mateusz\\projekt_programowanie\\server\\audio_library\
 //char * TEMP = "C:\\Users\\Mateusz\\projekt_programowanie\\server\\audio_library\\Yamaha-V50-Rock-Beat-120bpm.wav";
 int main(int argc, char **argv)
 {
+    /* *
+     *  Parsing of command line arguments
+     *  Initializing System Specific features
+     * */
     if (SYSTEM == WINDOWS){
             WSADATA data;
             WSAStartup(MAKEWORD(2,2), &data);
         }
-
-
-
-    
 
     int port;
     if (argc<2)
@@ -40,6 +40,19 @@ int main(int argc, char **argv)
             port = PORT;
         }
     }
+
+    int socket = create_socket(TCP);
+    bind_port(socket, port);
+    
+
+    listen_to_socket(socket, QUEUE,TCP);
+
+    int peer_socket = accept_connection(socket);
+
+    int number_of_files = 0;
+    char **files = get_files_in_directory("C:\\Users\\Mateusz\\projekt_programowanie\\server\\audio_library",&number_of_files);
+    send_available_songs(socket, files, number_of_files);
+    free(files);
 
     SNDFILE *file;
     SF_INFO file_info;
@@ -61,13 +74,7 @@ int main(int argc, char **argv)
     //      fprintf(stdout,"Example frame %f\n",frames[i]);
     //  }
     
-    int socket = create_socket(TCP);
-    bind_port(socket, port);
     
-
-    listen_to_socket(socket, QUEUE,TCP);
-
-    int peer_socket = accept_connection(socket);
 
     int size_of_frame = sizeof(int)+20; // HOW BIG THIS THING NEEDS TO BEE TODO
     
