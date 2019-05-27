@@ -51,7 +51,7 @@ int main(int argc, char **argv)
 
     int number_of_files = 0;
     char **files = get_files_in_directory("C:\\Users\\Mateusz\\projekt_programowanie\\server\\audio_library",&number_of_files);
-    send_available_songs(socket, files, number_of_files);
+    send_available_songs(peer_socket, files, number_of_files);
     free(files);
 
     SNDFILE *file;

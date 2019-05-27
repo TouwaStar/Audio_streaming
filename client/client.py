@@ -94,7 +94,9 @@ def main():
 
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            print("Created a socket")
             s.connect((HOST,PORT))
+            print("Connected to a socket")
 
             client.get_song_list(s)
             client.get_sampling(s)
@@ -107,8 +109,10 @@ def main():
                     temp_ind = len(client.data)-1
                     client.play_streamed_data(client.data[len(client.data)-1])
                 
-    except ConnectionResetError:
-        pass
+    except ConnectionResetError as e:
+        print(f"Exception {repr(e)}")
+    except Exception as e:
+        print(f"Exception {repr(e)}")
     finally:
         client.stop_audio_stream()
 
