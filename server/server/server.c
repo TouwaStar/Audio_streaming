@@ -1,19 +1,18 @@
 
 #include "communication.c"
-#include "./util/util.c"
-#include "./util/wav_parser.c"
-#include "./third_party/sndfile.h"
+#include "../util/util.c"
+#include "../util/wav_parser.c"
+#include "../third_party/sndfile.h"
 
 typedef enum{WINDOWS = 1, POSIX = 2} SYS;
 
 #define QUEUE 256
 #define PORT 6999
-#define FRAMES_IN_MESSAGE 240
+#define FRAMES_IN_MESSAGE 80
+#define PATH_TO_SONGS "../audio_library"
 
 #include <time.h>
 
-char * TEMP = "C:\\Users\\Mateusz\\projekt_programowanie\\server\\audio_library\\05 Track 5.wav";
-//char * TEMP = "C:\\Users\\Mateusz\\projekt_programowanie\\server\\audio_library\\Yamaha-V50-Rock-Beat-120bpm.wav";
 int main(int argc, char **argv)
 {
     /* *
@@ -26,9 +25,12 @@ int main(int argc, char **argv)
         }
 
     int port;
+    char* path_to_songs;
+    char* song_to_stream;
+    char* path_to_song;
     if (argc<2)
     {
-        //use default
+        // Use default
         port = PORT;
     }
     else
@@ -36,28 +38,29 @@ int main(int argc, char **argv)
         port = atoi(argv[1]);
         if (port == 0)
         {
-            // fallback to default if atoi fails
+            // Fallback to default if atoi fails
             port = PORT;
         }
+    }if (argc<3)
+    {
+        // No path provided, attempting to use relative default
+        path_to_songs = PATH_TO_SONGS;
+    }else{
+        path_to_songs = argv[2];
     }
 
-    int socket = create_socket(TCP);
-    bind_port(socket, port);
+    int socket;
+    int peer_socket = connect_with_client(TCP,port,QUEUE,&socket);
     
 
-    listen_to_socket(socket, QUEUE,TCP);
-
-    int peer_socket = accept_connection(socket);
-
-    int number_of_files = 0;
-    char **files = get_files_in_directory("C:\\Users\\Mateusz\\projekt_programowanie\\server\\audio_library",&number_of_files);
-    send_available_songs(peer_socket, files, number_of_files);
-    free(files);
+    send_songs_list_to_client(peer_socket, path_to_songs);
+    song_to_stream = get_song_to_stream_dynamic(peer_socket);
+    path_to_song = create_path_dynamic(path_to_songs,song_to_stream);
+    free(song_to_stream);
 
     SNDFILE *file;
     SF_INFO file_info;
-
-    file = sf_open(TEMP, SFM_READ, &file_info);
+    file = sf_open(path_to_song, SFM_READ, &file_info);
 
     int items_to_alocate = file_info.frames * file_info.channels ;
     int *frames = calloc(items_to_alocate, sizeof(int));
@@ -70,11 +73,6 @@ int main(int argc, char **argv)
     fprintf(stdout,"Number of frames in file: %I64i\n", file_info.frames);
     fprintf(stdout,"Number of frames read: %I64i\n",sf_readf_int(file, frames, file_info.frames));
     fprintf(stdout,"Size of single frame: %d\n", sizeof(frames[0]));
-    //  for( int i = 5000; i <5100;i++){
-    //      fprintf(stdout,"Example frame %f\n",frames[i]);
-    //  }
-    
-    
 
     int size_of_frame = sizeof(int)+20; // HOW BIG THIS THING NEEDS TO BEE TODO
     
@@ -85,13 +83,14 @@ int main(int argc, char **argv)
     // Send size of frame * number of frames as the size of buffer
     send_audio_property(peer_socket, size_of_frame*FRAMES_IN_MESSAGE);
     
-    send_frames(peer_socket,frames,items_to_alocate,size_of_frame,240);
+    send_frames(peer_socket,frames,items_to_alocate,size_of_frame,FRAMES_IN_MESSAGE);
     send_message_char(peer_socket,"EOM",sizeof("EOM"));
     
 
 
 
     Sleep(5000);
+    free(path_to_song);
     free(frames);
     sf_close(file);
 

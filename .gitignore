@@ -1,1 +1,4 @@
-.server/audio_library/*
+.server/audio_library/
+.vscode/
+.vscode
+music_streaming.code-workspace

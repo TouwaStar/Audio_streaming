@@ -35,12 +35,17 @@ class Client():
 
     def get_song_list(self, socket):
         unpacked = b''
-        while b'EOM' not in unpacked:
+        while True:
             message = socket.recv(1024)
             unpacked = unpack_message(message)[0]
+            if b'EOM' in unpacked:
+                break
             self.song_list.append(unpacked)
+            print(".")
         print(f"Received Song List\n{self.song_list}")
 
+    def choose_song(self, socket):
+        socket.send(self.song_list[0]) #temp
 
     def get_sampling(self, socket):
         message = self._retrieve_message(socket, b"SAMPLING_RATE")
@@ -99,6 +104,7 @@ def main():
             print("Connected to a socket")
 
             client.get_song_list(s)
+            client.choose_song(s)
             client.get_sampling(s)
             client.get_channels(s)
             client.get_data_message_size(s)
