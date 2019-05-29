@@ -1,5 +1,5 @@
 HOST = '127.0.0.1'
-PORT = 6999
+PORT = 8989
 
 import socket
 import struct
@@ -33,19 +33,24 @@ class Client():
         socket.send(b'GOT_'+message)
         return message
 
-    def get_song_list(self, socket):
-        unpacked = b''
+    def get_songs(self, socket):
+        socket.send(b"GIVE_SONG_LIST")
         while True:
             message = socket.recv(1024)
-            unpacked = unpack_message(message)[0]
-            if b'EOM' in unpacked:
-                break
-            self.song_list.append(unpacked)
-            print(".")
-        print(f"Received Song List\n{self.song_list}")
+            print(message)
+            unpacked = unpack_message(message)
+            for unpacked_message in unpacked:
+                if b'EOM' in unpacked_message:
+                    return
+                print(f"Received Song {unpacked_message}")
+                self.song_list.append(unpacked_message)
 
     def choose_song(self, socket):
-        socket.send(self.song_list[0]) #temp
+        print("PICK SONG NUMBER")
+        for i, song in enumerate(self.song_list):
+            print(f"{i}. {song}")
+        song_pick = int(input())
+        socket.send(self.song_list[song_pick])
 
     def get_sampling(self, socket):
         message = self._retrieve_message(socket, b"SAMPLING_RATE")
@@ -102,24 +107,27 @@ def main():
             print("Created a socket")
             s.connect((HOST,PORT))
             print("Connected to a socket")
-
-            client.get_song_list(s)
-            client.choose_song(s)
-            client.get_sampling(s)
-            client.get_channels(s)
-            client.get_data_message_size(s)
-            client.initialize_audio_stream()
-            temp_ind = 0
-            while client.retrieve_audio_data(s):
-                if len(client.data)-1 != temp_ind:
-                    temp_ind = len(client.data)-1
-                    client.play_streamed_data(client.data[len(client.data)-1])
+            
+            while True:
+                client.song_list = []
+                client.get_songs(s)
+                client.choose_song(s)
+                client.get_sampling(s)
+                client.get_channels(s)
+                client.get_data_message_size(s)
+                client.initialize_audio_stream()
+                temp_ind = 0
+                while client.retrieve_audio_data(s):
+                    if len(client.data)-1 != temp_ind:
+                        temp_ind = len(client.data)-1
+                        client.play_streamed_data(client.data[len(client.data)-1])
                 
     except ConnectionResetError as e:
         print(f"Exception {repr(e)}")
     except Exception as e:
         print(f"Exception {repr(e)}")
     finally:
+        s.close()
         client.stop_audio_stream()
 
 if __name__ == "__main__":

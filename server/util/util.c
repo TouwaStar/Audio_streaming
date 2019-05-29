@@ -14,7 +14,7 @@
     #define SYSTEM POSIX
 #endif
 
-#define MAX_TEXT_SIZE 64
+#define MAX_TEXT_SIZE 256
 #include <dirent.h>
 
 int open_file(char* path){
@@ -34,7 +34,7 @@ char** get_files_in_directory_dynamic( char* directory, int* number_of_files){
     struct dirent *dir;
     d = opendir(directory);
     
-    char **files = calloc(100,MAX_TEXT_SIZE*sizeof(char*));
+    char **files = calloc(100,100);
     if (d)
     {
         int i = 0;
@@ -44,7 +44,7 @@ char** get_files_in_directory_dynamic( char* directory, int* number_of_files){
             if(dir->d_name[0] == '.'){
                 continue;
             }
-            files[i] = malloc((MAX_TEXT_SIZE));
+            files[i] = malloc(MAX_TEXT_SIZE * sizeof(char));
             snprintf(files[i],MAX_TEXT_SIZE,dir->d_name);
 
             fprintf(stdout,"%s\n", dir->d_name);

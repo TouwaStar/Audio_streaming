@@ -40,7 +40,7 @@ typedef enum {TCP=SOCK_STREAM, UDP=SOCK_DGRAM} SOCKET_TYPE;
 
 #define BUFF 512
 
-int _create_socket (SOCKET_TYPE type)
+int create_socket (SOCKET_TYPE type)
 {
     int socket_id;
     socket_id = socket(AF_INET, type, 0);
@@ -54,7 +54,7 @@ int _create_socket (SOCKET_TYPE type)
     return socket_id;
 }
 
-int _bind_port (int socket, int port)
+int bind_port (int socket, int port)
 {
     struct sockaddr_in address;
 
@@ -77,7 +77,7 @@ int _bind_port (int socket, int port)
     return status;
 }
 
-int _accept_connection (int socket)
+int accept_connection (int socket)
 {
     unsigned short port;
     struct in_addr client_ip;
@@ -104,7 +104,7 @@ int _accept_connection (int socket)
     return peer_socket;
 }
 
-int _listen_to_socket (int socket, int log, SOCKET_TYPE type)
+int listen_to_socket (int socket, int log, SOCKET_TYPE type)
 {
     if(type == TCP)
     {
@@ -125,9 +125,3 @@ int _listen_to_socket (int socket, int log, SOCKET_TYPE type)
     return -1;
 }
 
-int connect_with_client(SOCKET_TYPE TCP,int port,int QUEUE,int *socket){
-    *socket = _create_socket(TCP);
-    _bind_port(*socket, port);
-    _listen_to_socket(*socket, QUEUE,TCP);
-    return _accept_connection(*socket);
-}

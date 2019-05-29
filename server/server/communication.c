@@ -21,7 +21,7 @@ void _send_available_songs(int socket, char** song_list, int number_of_songs){
     for(int i = 0; i < number_of_songs; i++){
         send_message_char(socket,song_list[i],sizeof(song_list[i])*10);
     }
-    send_message_char(socket,"SONG LIST EOM",sizeof("SONG LIST EOM"));
+    send_message_char(socket,"SONG LIST EOM",strlen("SONG LIST EOM"));
 
 }
 
