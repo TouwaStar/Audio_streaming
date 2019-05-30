@@ -10,6 +10,9 @@ import time
 import pyaudio
 import numpy
 import array
+from threading import Thread
+
+from gui import Gui
 
 
 def unpack_message(message):
@@ -26,6 +29,7 @@ class Client():
         self._pyaudio = None
         self._stream = None
         self.song_list = []
+        self.Gui = Gui()
 
     def _retrieve_message(self, socket, message, size=1024):
         socket.send(b'GIVE_'+message)
@@ -72,7 +76,8 @@ class Client():
 
     def retrieve_audio_data(self, socket):
         message = socket.recv(self.data_message_size)
-        self.data.append(unpack_message(message))
+        if message:
+            self.data.append(unpack_message(message))
         if b'EOM' in message:
             return False
         return True
@@ -86,7 +91,7 @@ class Client():
                         output=True)
 
     def play_streamed_data(self, audio_frame):
-        print(f"writing {audio_frame} to audio stream")
+        #print(f"writing {audio_frame} to audio stream")
         intel = array.array('l')
         for el in audio_frame:
             intel.append(int(el))
@@ -96,7 +101,13 @@ class Client():
         self._stream.stop_stream()
         self._stream.close()
 
-
+    def play_audio(self, socket):
+        temp_ind = 0
+        socket.setblocking(0)
+        while self.retrieve_audio_data(socket):
+            if len(self.data)-1 != temp_ind:
+                temp_ind = len(self.data)-1
+                self.play_streamed_data(self.data[len(self.data)-1])
 
 def main():
     
@@ -116,11 +127,10 @@ def main():
                 client.get_channels(s)
                 client.get_data_message_size(s)
                 client.initialize_audio_stream()
-                temp_ind = 0
-                while client.retrieve_audio_data(s):
-                    if len(client.data)-1 != temp_ind:
-                        temp_ind = len(client.data)-1
-                        client.play_streamed_data(client.data[len(client.data)-1])
+                client.Gui.start_drawing()
+                client.play_audio(s)
+                raise IndexError
+                
                 
     except ConnectionResetError as e:
         print(f"Exception {repr(e)}")
