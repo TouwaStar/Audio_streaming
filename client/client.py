@@ -11,6 +11,7 @@ import pyaudio
 import numpy
 import array
 from threading import Thread
+import threading
 
 from gui import Gui
 
@@ -75,7 +76,10 @@ class Client():
         print(f"After unpacking {self.channels}")
 
     def retrieve_audio_data(self, socket):
-        message = socket.recv(self.data_message_size)
+        try:
+            message = socket.recv(self.data_message_size)
+        except:
+            return False
         if message:
             self.data.append(unpack_message(message))
         if b'EOM' in message:
@@ -104,10 +108,12 @@ class Client():
     def play_audio(self, socket):
         temp_ind = 0
         socket.setblocking(0)
+        played_frame = 0
         while self.retrieve_audio_data(socket):
-            if len(self.data)-1 != temp_ind:
-                temp_ind = len(self.data)-1
-                self.play_streamed_data(self.data[len(self.data)-1])
+            self.Gui.event.wait()
+            if len(self.data)-1 >= played_frame:
+                self.play_streamed_data(self.data[played_frame])
+                played_frame += 1
 
 def main():
     
@@ -120,6 +126,7 @@ def main():
             print("Connected to a socket")
             
             while True:
+                s.setblocking(1)
                 client.song_list = []
                 client.get_songs(s)
                 client.choose_song(s)
@@ -129,7 +136,8 @@ def main():
                 client.initialize_audio_stream()
                 client.Gui.start_drawing()
                 client.play_audio(s)
-                raise IndexError
+                client.Gui.running = False
+                
                 
                 
     except ConnectionResetError as e:
