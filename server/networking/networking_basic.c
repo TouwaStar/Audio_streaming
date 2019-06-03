@@ -40,6 +40,9 @@ typedef enum {TCP=SOCK_STREAM, UDP=SOCK_DGRAM} SOCKET_TYPE;
 
 #define BUFF 512
 
+/**
+ * Creates a socket of specified type
+ */
 int create_socket (SOCKET_TYPE type)
 {
     int socket_id;
@@ -47,13 +50,15 @@ int create_socket (SOCKET_TYPE type)
     if (socket_id == -1)
     {
         fprintf(stderr, "Failed to create socket %s\n", strerror(errno));
-        exit(EXIT_FAILURE);
-        return socket_id;
+        exit(1);
     }
     printf("Created socket, id: %d\n", socket_id);
     return socket_id;
 }
 
+/**
+ * Binds provided socket to specified port
+ */
 int bind_port (int socket, int port)
 {
     struct sockaddr_in address;
@@ -68,15 +73,18 @@ int bind_port (int socket, int port)
     if (status == -1)
     {
         fprintf(stderr, "Failed to bind port %d: %s\n", port, strerror(errno));
-        exit(EXIT_FAILURE);
-        return status;
+        exit(1);
     }
 
-    printf("Binded port %d\n", port);
+    fprintf(stdout,"Bound port %d\n", port);
 
     return status;
 }
 
+
+/**
+ * Wait for and accept an incoming connection to the specified socket.
+ */
 int accept_connection (int socket)
 {
     unsigned short port;
@@ -96,7 +104,7 @@ int accept_connection (int socket)
     if (peer_socket == -1)
     {
         fprintf(stderr, "Failed to accept connection with client %s:%d: %s\n", ip, port, strerror(errno));
-        exit(EXIT_FAILURE);
+        exit(1);
     }
 
     printf("Accepted connection with client  %s:%d\n", ip, port);
@@ -104,6 +112,9 @@ int accept_connection (int socket)
     return peer_socket;
 }
 
+/**
+ * Starts listening on the specified socket
+ */
 int listen_to_socket (int socket, int log, SOCKET_TYPE type)
 {
     if(type == TCP)
@@ -113,15 +124,13 @@ int listen_to_socket (int socket, int log, SOCKET_TYPE type)
         if (listen_status == -1)
         {
             fprintf(stderr, "Failed to bind socket, id: %d with log %d: %s\n", socket, log, strerror(errno));
-            exit(EXIT_FAILURE);
-            return listen_status;
+            exit(1);
         }
 
         printf("Listening to socket, id: %d with log %d\n", socket, log);
 
         return listen_status;
     }
-    //todo
     return -1;
 }
 

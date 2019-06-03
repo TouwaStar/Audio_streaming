@@ -2,3 +2,5 @@
 .vscode/
 .vscode
 music_streaming.code-workspace
+__pycache__
+.client/__pycache__

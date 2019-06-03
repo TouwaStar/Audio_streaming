@@ -6,7 +6,6 @@ import struct
 import time
 import re
 import string
-import time
 import pyaudio
 import numpy
 import array
@@ -27,6 +26,11 @@ class Client():
         self.data_message_size = None
         self.sampling_rate = None
         self.channels = None
+        self.song_length = None
+        self.frames_in_message = None
+        self.frames_in_song = None
+        self.frames_per_second = None
+        self._input_step = None
         self._pyaudio = None
         self._stream = None
         self.song_list = []
@@ -34,18 +38,29 @@ class Client():
 
     def _retrieve_message(self, socket, message, size=1024):
         socket.send(b'GIVE_'+message)
-        message = socket.recv(size)
+        message = None
+        while not message:
+            try:
+                message = socket.recv(size)
+            except:
+                pass
         socket.send(b'GOT_'+message)
         return message
 
     def get_songs(self, socket):
         socket.send(b"GIVE_SONG_LIST")
         while True:
-            message = socket.recv(1024)
+            try:
+                message = socket.recv(1024)
+            except:
+                continue
             print(message)
             unpacked = unpack_message(message)
+            
+            print(unpacked)
             for unpacked_message in unpacked:
                 if b'EOM' in unpacked_message:
+                    print("EOM IN MESSage")
                     return
                 print(f"Received Song {unpacked_message}")
                 self.song_list.append(unpacked_message)
@@ -75,13 +90,26 @@ class Client():
         self.channels = int(unpack_message(message)[0])
         print(f"After unpacking {self.channels}")
 
+    def get_song_length(self, socket):
+        message = self._retrieve_message(socket, b"SONG_LENGTH")
+        print(f"Got song length {message}")
+        self.song_length = int(unpack_message(message)[0])
+        print(f"After unpacking {self.song_length}")
+
     def retrieve_audio_data(self, socket):
         try:
             message = socket.recv(self.data_message_size)
         except:
             return False
         if message:
-            self.data.append(unpack_message(message))
+            message = unpack_message(message)
+            if not self.frames_in_message:
+                self.frames_in_message = len(message)
+                self.frames_per_second = self.frames_in_song / self.song_length
+                # This means that whenever we fast forward or rewind the song, we do so by 5 seconds
+                self._input_step = int(self.frames_per_second / self.frames_in_message) * 5
+            self.data.append(message)
+
         if b'EOM' in message:
             return False
         return True
@@ -95,7 +123,6 @@ class Client():
                         output=True)
 
     def play_streamed_data(self, audio_frame):
-        #print(f"writing {audio_frame} to audio stream")
         intel = array.array('l')
         for el in audio_frame:
             intel.append(int(el))
@@ -105,12 +132,26 @@ class Client():
         self._stream.stop_stream()
         self._stream.close()
 
+    def handle_input(self, played_frame):
+        self.Gui.event.wait()
+
+        if self.Gui.rewind:
+            self.Gui.rewind = False
+            if played_frame - self._input_step >= 0:
+                played_frame -= self._input_step
+
+        if self.Gui.fast_forward:
+            self.Gui.fast_forward = False
+            if played_frame + self._input_step <= len(self.data)-1:
+                played_frame += self._input_step
+
+        return played_frame
+
     def play_audio(self, socket):
         temp_ind = 0
-        socket.setblocking(0)
         played_frame = 0
         while self.retrieve_audio_data(socket):
-            self.Gui.event.wait()
+            played_frame = self.handle_input(played_frame)
             if len(self.data)-1 >= played_frame:
                 self.play_streamed_data(self.data[played_frame])
                 played_frame += 1
@@ -125,13 +166,15 @@ def main():
             s.connect((HOST,PORT))
             print("Connected to a socket")
             
+            s.setblocking(0)
             while True:
-                s.setblocking(1)
                 client.song_list = []
                 client.get_songs(s)
                 client.choose_song(s)
                 client.get_sampling(s)
                 client.get_channels(s)
+                client.get_song_length(s)
+                client.frames_in_song = client.sampling_rate * client.song_length
                 client.get_data_message_size(s)
                 client.initialize_audio_stream()
                 client.Gui.start_drawing()

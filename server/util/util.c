@@ -17,6 +17,9 @@
 #define MAX_TEXT_SIZE 256
 #include <dirent.h>
 
+/**
+ * Opens the file at specified path, returns the file descriptor.
+ */
 int open_file(char* path){
         
     int fd = open(path, O_RDONLY);
@@ -29,6 +32,11 @@ int open_file(char* path){
         return fd;
 }
 
+/**
+ * Returns a dynamically allocated pointer containing all the files found at the specified directory
+ *  with the exception of files beggining with '.'. This function is also provided an int pointer to which
+ *  it will write the number of files that were found in the directory.
+ */
 char** get_files_in_directory_dynamic( char* directory, int* number_of_files){
     DIR *d;
     struct dirent *dir;
@@ -70,6 +78,10 @@ void get_file_stat(int fd, struct stat *file_stat){
         }
 }
 
+/**
+ * Joins the two strings provided in order to create a path
+ *  returns a char pointer to dynamically allocated memory.
+ */
 char* create_path_dynamic(char* string_a, char* string_b){
     char * path;
     if( (path = malloc(strlen(string_a)+strlen(string_b)+2)) != NULL){

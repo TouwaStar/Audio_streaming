@@ -14,12 +14,12 @@ void send_audio_property(int socket, int property){
 
 /**
  * Sends over the socket songs from the provided song list
- *  up to a number provided in parameter
+ * up to a number provided in parameter
  */
 void _send_available_songs(int socket, char** song_list, int number_of_songs){
 
     for(int i = 0; i < number_of_songs; i++){
-        send_message_char(socket,song_list[i],sizeof(song_list[i])*10);
+        send_message_char(socket,song_list[i],strlen(song_list[i]));
     }
     send_message_char(socket,"SONG LIST EOM",strlen("SONG LIST EOM"));
 
@@ -35,7 +35,9 @@ void send_songs_list_to_client(int socket, char* path_to_songs){
     free(files);
 }
 
-
+/**
+ * Retrieves the name of the song to stream to the client from the specified socket.
+ */
 char* get_song_to_stream_dynamic(int socket){
     char* song = retrieve_message_dynamic(socket);
     return song;
