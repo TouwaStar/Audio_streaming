@@ -24,7 +24,7 @@ class Gui():
 
         draw_loop.start()
 
-    def _handle_input():
+    def _handle_input(self):
         for event in pygame.event.get():
                 if event.type == QUIT:
                     self.running = False
@@ -68,7 +68,7 @@ class Gui():
                 green = 0
             clock.tick(30)
             pygame.display.flip()
-            
+
             self._handle_input()
             
             if not self.running:

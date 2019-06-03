@@ -150,11 +150,27 @@ class Client():
     def play_audio(self, socket):
         temp_ind = 0
         played_frame = 0
-        while self.retrieve_audio_data(socket):
+
+        received_all_data = False
+        while True:
+            if not received_all_data:
+                if not self.retrieve_audio_data(socket):
+                    # Approximate if the song is complete
+                    received_length = (len(self.data) * self.frames_in_message)/self.sampling_rate
+                    if self.song_length - 5 <= received_length <= self.song_length + 5:
+                        received_all_data = True
+
             played_frame = self.handle_input(played_frame)
+
+            if received_all_data:
+                if len(self.data)-1 <= played_frame:
+                    break
+
             if len(self.data)-1 >= played_frame:
                 self.play_streamed_data(self.data[played_frame])
                 played_frame += 1
+     
+
 
 def main():
     
