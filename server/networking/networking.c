@@ -1,8 +1,9 @@
-// Mateusz Siłaczewski IZ06IO1 16084
+
 
 #include "./networking_basic.c"
 
 #define LEN_OF_APPENDIX 7
+#define BUFF 512
 
 void receive_data (int socket)
 {

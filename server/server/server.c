@@ -1,11 +1,11 @@
-
 #include "communication.c"
 #include "../util/util.c"
 #include "../third_party/sndfile.h"
 
 #include "math.h"
 #include "limits.h"
-typedef enum{WINDOWS = 1, POSIX = 2} SYS;
+
+
 
 #define QUEUE 512
 #define PORT 8989
@@ -78,7 +78,7 @@ int main(int argc, char **argv)
     }else{
         path_to_songs = argv[2];
     }
-
+    fprintf(stdout,"Server ip address %s\n",get_own_ip());
     socket = create_socket(TCP);
     bind_port(socket, port);
     listen_to_socket(socket, QUEUE,TCP);

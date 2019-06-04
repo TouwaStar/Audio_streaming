@@ -11,6 +11,7 @@ import numpy
 import array
 from threading import Thread
 import threading
+import sys
 
 from gui import Gui
 
@@ -168,13 +169,20 @@ class Client():
 
             if len(self.data)-1 >= played_frame:
                 self.play_streamed_data(self.data[played_frame])
+                if b'EOM' in self.data[played_frame]:
+                    received_all_data = True
                 played_frame += 1
+                
+
+            
      
 
 
 def main():
     
     client = Client()
+    if len(sys.argv) >1:
+        HOST = sys.argv[1]
 
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:

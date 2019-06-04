@@ -21,24 +21,8 @@
 #include <limits.h>
 
 
-#ifndef ssize_t
-    #if SIZE_MAX == UINT_MAX
-    typedef int ssize_t;        /* common 32 bit case */
-    #elif SIZE_MAX == ULONG_MAX
-    typedef long ssize_t;       /* linux 64 bits */
-    #elif SIZE_MAX == ULLONG_MAX
-    typedef long long ssize_t;  /* windows 64 bits */
-    #elif SIZE_MAX == USHRT_MAX
-    typedef short ssize_t;      
-    #endif
-#endif
-
 
 typedef enum {TCP=SOCK_STREAM, UDP=SOCK_DGRAM} SOCKET_TYPE;
-#define FALSE 0
-#define TRUE 1
-
-#define BUFF 512
 
 /**
  * Creates a socket of specified type
@@ -67,9 +51,8 @@ int bind_port (int socket, int port)
     address.sin_addr.s_addr = htonl(INADDR_ANY);
     address.sin_port = htons(port);
     memset( &( address.sin_zero ), '\0', 8 );
-
     int status = bind(socket, (struct sockaddr *) & address, sizeof(struct sockaddr));
-
+    
     if (status == -1)
     {
         fprintf(stderr, "Failed to bind port %d: %s\n", port, strerror(errno));

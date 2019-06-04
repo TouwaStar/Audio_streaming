@@ -1,4 +1,4 @@
-// Mateusz Siłaczewski IZ06IO1 16084
+
 #ifndef UTIL
 #define UTIL
 #include <sys/stat.h>
@@ -8,14 +8,43 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
+
+typedef enum{WINDOWS = 1, POSIX = 2} SYS;
+
 #ifdef _WIN32
     #define SYSTEM WINDOWS
 #else 
     #define SYSTEM POSIX
+    #include <ifaddrs.h>
 #endif
+
 
 #define MAX_TEXT_SIZE 256
 #include <dirent.h>
+
+/**
+ * Returns own ip address
+ */
+#ifdef _WIN32
+char* get_own_ip(){
+    char hostbuffer[256]; 
+    char *IPbuffer; 
+    struct hostent *host_entry; 
+    
+    gethostname(hostbuffer, sizeof(hostbuffer)); 
+    host_entry = gethostbyname(hostbuffer); 
+    IPbuffer = inet_ntoa(*((struct in_addr*) 
+                           host_entry->h_addr_list[0])); 
+    return IPbuffer;
+}
+#else
+char* get_own_ip(){
+    struct ifaddrs *id;
+    int val;
+    val = getifaddrs(&id);
+    return id->ifa_addr;
+}
+#endif
 
 /**
  * Opens the file at specified path, returns the file descriptor.
