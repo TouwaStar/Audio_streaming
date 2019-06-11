@@ -6,8 +6,8 @@ import sys
 import time
 
 
-class Gui():
-    def __init__(self):
+class Gui(object):
+    def __init__(self, client):
         self.running = False
         self.event = threading.Event()
         self._pause = False
@@ -17,7 +17,7 @@ class Gui():
         self._smart_command_delay = 0.7
         self._pressed_time = None
 
-
+        self.client = client
 
     def start_drawing(self):
         draw_loop = Thread(target=self._draw_loop,daemon=True)
@@ -69,6 +69,7 @@ class Gui():
             clock.tick(30)
             pygame.display.flip()
 
+            pygame.draw.rect(screen,[40,0,220],(100,100,100,100))
             self._handle_input()
             
             if not self.running:

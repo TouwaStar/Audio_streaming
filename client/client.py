@@ -1,5 +1,4 @@
-HOST = '127.0.0.1'
-PORT = 8989
+
 
 import socket
 import struct
@@ -35,7 +34,8 @@ class Client():
         self._pyaudio = None
         self._stream = None
         self.song_list = []
-        self.Gui = Gui()
+        self.played_frame = None
+        self.Gui = Gui(self)
 
     def _retrieve_message(self, socket, message, size=1024):
         socket.send(b'GIVE_'+message)
@@ -133,24 +133,24 @@ class Client():
         self._stream.stop_stream()
         self._stream.close()
 
-    def handle_input(self, played_frame):
+    def handle_input(self):
         self.Gui.event.wait()
 
         if self.Gui.rewind:
             self.Gui.rewind = False
-            if played_frame - self._input_step >= 0:
-                played_frame -= self._input_step
+            if self.played_frame - self._input_step >= 0:
+                self.played_frame -= self._input_step
 
         if self.Gui.fast_forward:
             self.Gui.fast_forward = False
-            if played_frame + self._input_step <= len(self.data)-1:
-                played_frame += self._input_step
+            if self.played_frame + self._input_step <= len(self.data)-1:
+                self.played_frame += self._input_step
 
-        return played_frame
+        return self.played_frame
 
     def play_audio(self, socket):
         temp_ind = 0
-        played_frame = 0
+        self.played_frame = 0
 
         received_all_data = False
         while True:
@@ -161,17 +161,18 @@ class Client():
                     if self.song_length - 5 <= received_length <= self.song_length + 5:
                         received_all_data = True
 
-            played_frame = self.handle_input(played_frame)
+            self.played_frame = self.handle_input()
 
             if received_all_data:
-                if len(self.data)-1 <= played_frame:
+                if len(self.data)-1 <= self.played_frame:
                     break
 
-            if len(self.data)-1 >= played_frame:
-                self.play_streamed_data(self.data[played_frame])
-                if b'EOM' in self.data[played_frame]:
-                    received_all_data = True
-                played_frame += 1
+            if len(self.data)-1 >= self.played_frame:
+                if b'EOM' in self.data[self.played_frame]:
+                    break
+                
+                self.play_streamed_data(self.data[self.played_frame])
+                self.played_frame += 1
                 
 
             
@@ -180,9 +181,13 @@ class Client():
 
 def main():
     
-    client = Client()
+    HOST = '127.0.0.1'
+    PORT = 8989
+
     if len(sys.argv) >1:
         HOST = sys.argv[1]
+    if len(sys.argv) >2:
+        PORT = int(sys.argv[2])
 
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
@@ -192,6 +197,7 @@ def main():
             
             s.setblocking(0)
             while True:
+                client = Client()
                 client.song_list = []
                 client.get_songs(s)
                 client.choose_song(s)

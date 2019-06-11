@@ -1,5 +1,3 @@
-
-
 #include "./networking_basic.c"
 
 #define LEN_OF_APPENDIX 7
@@ -20,7 +18,7 @@ void receive_data (int socket)
  */
 char* retrieve_message_dynamic(int socket){
     int data;
-    char* buffer = malloc(BUFF+1);
+    char* buffer = calloc(1,BUFF+1);
     data = recv(socket, buffer, BUFF,0);
     buffer[data] = 0;
     fprintf(stdout,"Received messsage %s\n", buffer);
@@ -63,51 +61,57 @@ int create_connection (int socket, const char * ip, int port, SOCKET_TYPE type)
 
 
 
-void send_message_int(int socket, int message, int message_size){
+int send_message_int(int socket, int message, int message_size){
     void * buff = calloc(1,message_size+22);
     snprintf(buff,message_size+22,"PRE%dSUF",message);
     ssize_t len = send(socket, buff, message_size+22, 0);
         if (len < 0)
         {
               fprintf(stderr, "Error on sending message --> %s", strerror(errno));
-              exit(1);
+              free(buff);
+              return 1;
         }
     
     free(buff);
+    return 0;
 }
 
 
 /**
  * Sends a text message to provided socket
  */
-void send_message_char(int socket, char* message, int message_size){
+int send_message_char(int socket, char* message, int message_size){
     char * buff = calloc(1, message_size+LEN_OF_APPENDIX);
     int result = snprintf(buff,message_size+LEN_OF_APPENDIX,"PRE%sSUF",message);
 
     if(result < 0){
         fprintf(stderr, "Encoding error");
-        exit(1);
+        free(buff);
+        return 1;
     }
     fprintf(stdout,"SENDING %s\n",buff);
     ssize_t len = send(socket, buff, strlen(buff), 0);
     if (len < 0)
     {
             fprintf(stderr, "Error on sending message --> %s, %d", strerror(errno),len);
-            exit(1);
+            free(buff);
+            return 1;
     }
     if (len != strlen(buff)){
         fprintf(stderr,"Couldn't send the full message --> %s, %d",strerror(errno),len);
-        exit(1);
+        free(buff);
+        return 1;
     }
 
     free(buff);
+    return 0;
 }
 
 
 /**
  * Send the specified audio frames to the provided socket 
  */
-void send_frames(int socket, int* frames, int items_to_send, int size_of_frame, int frames_in_message){
+int send_frames(int socket, int* frames, int items_to_send, int size_of_frame, int frames_in_message){
 
     for(int i = 0; i< items_to_send-frames_in_message;){
         int offset = 0;
@@ -116,21 +120,23 @@ void send_frames(int socket, int* frames, int items_to_send, int size_of_frame, 
             offset += snprintf(buff+offset,size_of_frame+LEN_OF_APPENDIX,"PRE%dSUF",frames[i+j]);
             if( offset <0){
                 fprintf(stderr,"Failed to prepare frame for sending\n");
-                exit(1);
+                free(buff);
+                return 1; 
             }
         }
         fprintf(stdout,"Sending frame %d out of %d, content %s\n",i,items_to_send,buff);
         int write_result = send(socket,buff,size_of_frame*frames_in_message,0);
         if (write_result < 0){
             fprintf(stderr,"Failed to send frame %d, write result: %d\n",i,write_result);
-            exit(1);
+            free(buff);
+            return 1;
         };
         i = i+frames_in_message;
         
         free(buff);
     }
     fprintf(stdout,"Sent all frames\n");
-
+    return 0;
 }
 
 int disconnect (int socket)
