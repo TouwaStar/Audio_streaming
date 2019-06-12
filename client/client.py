@@ -45,7 +45,6 @@ class Client():
                 message = socket.recv(size)
             except:
                 pass
-        socket.send(b'GOT_'+message)
         return message
 
     def get_songs(self, socket):
@@ -61,7 +60,7 @@ class Client():
             print(unpacked)
             for unpacked_message in unpacked:
                 if b'EOM' in unpacked_message:
-                    print("EOM IN MESSage")
+                    print("EOM IN MESSAGE")
                     return
                 print(f"Received Song {unpacked_message}")
                 self.song_list.append(unpacked_message)
@@ -71,7 +70,7 @@ class Client():
         for i, song in enumerate(self.song_list):
             print(f"{i}. {song}")
         song_pick = int(input())
-        socket.send(self.song_list[song_pick])
+        socket.send(b"SET_SONG_"+self.song_list[song_pick])
 
     def get_sampling(self, socket):
         message = self._retrieve_message(socket, b"SAMPLING_RATE")
@@ -80,7 +79,7 @@ class Client():
         print(f"After unpacking {self.sampling_rate}")
 
     def get_data_message_size(self, socket):
-        message = self._retrieve_message(socket, b"SIZE")
+        message = self._retrieve_message(socket, b"STREAM_SONG")
         print(f"Got data message size {message}")
         self.data_message_size = int(unpack_message(message)[0])
         print(f"After unpacking {self.data_message_size}")

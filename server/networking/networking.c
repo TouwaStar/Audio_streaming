@@ -20,6 +20,10 @@ char* retrieve_message_dynamic(int socket){
     int data;
     char* buffer = calloc(1,BUFF+1);
     data = recv(socket, buffer, BUFF,0);
+    if (data == 0 || data == -1){
+        free(buffer);
+        return "CLOSED";
+    }
     buffer[data] = 0;
     fprintf(stdout,"Received messsage %s\n", buffer);
     return buffer;

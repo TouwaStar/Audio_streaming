@@ -36,7 +36,7 @@ struct {
 "GIVE_SONG_LENGTH",
 "GIVE_NUMBER_OF_FRAMES", 
 "GIVE_BUFFER_SIZE", 
-"STREAM_SONG"};
+"GIVE_STREAM_SONG"};
 
 
 
@@ -117,32 +117,44 @@ int main(int argc, char **argv)
     // Process the client untill he disconnects
     char* request;
     while(1){
+
+    
         free(request);
         request = retrieve_message_dynamic(peer_socket);
+
+        if(strcmp(request,"CLOSED")==0){
+            listen_to_socket(socket, QUEUE,TCP);
+            peer_socket = accept_connection(socket);
+        }
     
         // Is the client asking for song list
         if(strcmp(request,Commands.SONG_LIST) == 0){
             if(send_songs_list_to_client(peer_socket, path_to_songs)>0){
                 send_message_char(peer_socket,"FATAL",SIZE_OF_FATAL);
             };
+            
         }
 
         // Is the client telling us to set a song
-        if(len(request)>len(Commands.SET_SONG)){
-            char* tempchar[len(Commands.SET_SONG)];
-            for(i = 0; i<len(Commands.SET_SONG);i++){
+        if(strlen(request)>strlen(Commands.SET_SONG)){
+            char tempchar[strlen(Commands.SET_SONG)];
+            for(int i = 0; i<strlen(Commands.SET_SONG);i++){
                 tempchar[i] = request[i];
             }
-            if(strcmp(request,Commands.SET_SONG)==0){
+            tempchar[strlen(Commands.SET_SONG)] = '\0';
+            fprintf(stdout,"Checking if client asked to set song %s\n",tempchar);
+            if(strcmp(tempchar,Commands.SET_SONG)==0){
                 // todo
                 
-                int i = len(Commands.SET_SONG);
+                int i = strlen(Commands.SET_SONG);
                 int j = 0;
                 char song[BUFF];
                 while(request[i] != '\0'){
                     song[j]= request[i];
                     j++;
+                    i++;
                 }
+                song[j]='\0';
                 path_to_song = create_path_dynamic(path_to_songs,song);
                 fprintf(stdout,"Path to song %s\n",path_to_song);
                 file = sf_open(path_to_song, SFM_READ, &file_info);
@@ -151,14 +163,18 @@ int main(int argc, char **argv)
 
         
         if (strcmp(request,Commands.SAMPLING_RATE) == 0){
+            fprintf(stdout,"Client asked for sampling rate");
             if(file == NULL){
                 send_message_char(peer_socket,"NO_SONG_SELECTED",strlen("NO_SONG_SELECTED")+2);
             }
             else if(send_audio_property(peer_socket, file_info.samplerate) > 0){
+                fprintf(stderr,"Sending sampling rate failed");
                 send_message_char(peer_socket,"FATAL",SIZE_OF_FATAL);
+                
             }
             
             fprintf(stdout,"Sampling rate: %d\n",file_info.samplerate);
+            
 
         }
 
