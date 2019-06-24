@@ -10,7 +10,7 @@
 #define QUEUE 512
 #define PORT 8989
 #define FRAMES_IN_MESSAGE 80
-#define PATH_TO_SONGS "../audio_library"
+#define PATH_TO_SONGS "./audio_library"
 
 #define FATAL "FATAL"
 #define SIZE_OF_FATAL 6
@@ -28,7 +28,7 @@ struct {
     char* NUMBER_OF_FRAMES;
     char* BUFFER_SIZE;
     char* STREAM_SONG;
-}Commands = {
+} Commands = {
 "GIVE_SONG_LIST", 
 "SET_SONG_", 
 "GIVE_SAMPLING_RATE",
@@ -66,7 +66,7 @@ int main(int argc, char **argv)
     int size_of_frame;
     
     void cleanup(){
-        fprintf(stderr,"Cleanup");
+        fprintf(stderr,"Cleanup\n");
 
         // Calling free on NULL pointer makes no action occur according to standard
         free(song_to_stream);
@@ -104,6 +104,16 @@ int main(int argc, char **argv)
     }if (argc<3)
     {
         // No path provided, attempting to use relative default
+        DIR* dir = opendir(PATH_TO_SONGS);
+        if (dir) {
+        // Directory exists. 
+        closedir(dir);
+        }else{
+        // Relative default doesn't exist
+        fprintf(stderr,"Can't find default audio library at path %s specfify path to audio library\n", PATH_TO_SONGS);
+        fprintf(stderr,"Usage: server.exe [port] [audio_library_path]\n");
+        exit(1);
+        }
         path_to_songs = PATH_TO_SONGS;
     }else{
         path_to_songs = argv[2];
@@ -142,7 +152,6 @@ int main(int argc, char **argv)
                 tempchar[i] = request[i];
             }
             tempchar[strlen(Commands.SET_SONG)] = '\0';
-            fprintf(stdout,"Checking if client asked to set song %s\n",tempchar);
             if(strcmp(tempchar,Commands.SET_SONG)==0){
                 // todo
                 
@@ -163,12 +172,13 @@ int main(int argc, char **argv)
 
         
         if (strcmp(request,Commands.SAMPLING_RATE) == 0){
-            fprintf(stdout,"Client asked for sampling rate");
+            fprintf(stdout,"Client asked for sampling rate\n");
             if(file == NULL){
+                fprintf(stderr,"No song has been selected\n");
                 send_message_char(peer_socket,"NO_SONG_SELECTED",strlen("NO_SONG_SELECTED")+2);
             }
             else if(send_audio_property(peer_socket, file_info.samplerate) > 0){
-                fprintf(stderr,"Sending sampling rate failed");
+                fprintf(stderr,"Sending sampling rate failed\n");
                 send_message_char(peer_socket,"FATAL",SIZE_OF_FATAL);
                 
             }
@@ -180,6 +190,7 @@ int main(int argc, char **argv)
 
         if (strcmp(request,Commands.CHANNELS) == 0){
             if(file == NULL){
+                fprintf(stderr,"No song has been selected\n");
                 send_message_char(peer_socket,"NO_SONG_SELECTED",strlen("NO_SONG_SELECTED")+2);
             }
             else if(send_audio_property(peer_socket, file_info.channels) > 0){
@@ -193,19 +204,20 @@ int main(int argc, char **argv)
 
         if (strcmp(request,Commands.STREAM_SONG) == 0){
             if(file == NULL){
+                fprintf(stderr,"No song has been selected\n");
                 send_message_char(peer_socket,"NO_SONG_SELECTED",strlen("NO_SONG_SELECTED")+2);
             }
 
-            
-            int number_of_frames = sf_readf_int(file, frames, file_info.frames);
             fprintf(stdout,"Number of frames in file: %I64i\n", file_info.frames);
+            
+            items_to_alocate = file_info.frames * file_info.channels;
+            frames = calloc(items_to_alocate, sizeof(int));
+            int number_of_frames = sf_readf_int(file, frames, file_info.frames);
             fprintf(stdout,"Number of frames read: %d\n", number_of_frames);
             fprintf(stdout,"Size of single frame: %d\n", sizeof(frames[0]));
                 
             // Calculate how big the frame needs to be after transforming from int to chars
             size_of_frame = floor(log10(llabs(LLONG_MAX)))+2;
-            items_to_alocate = file_info.frames * file_info.channels ;
-            frames = calloc(items_to_alocate, sizeof(int));
             send_audio_property(peer_socket, size_of_frame*FRAMES_IN_MESSAGE);
     
             send_frames(peer_socket,frames,items_to_alocate,size_of_frame,FRAMES_IN_MESSAGE);

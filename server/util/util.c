@@ -90,7 +90,7 @@ char** get_files_in_directory_dynamic( char* directory, int* number_of_files){
         closedir(d);
         *number_of_files = i;
     }else{
-        fprintf(stderr, "Unable to open audio directory");
+        fprintf(stderr, "Unable to open directory at path %s", directory);
         exit(1);
     }
     return files;

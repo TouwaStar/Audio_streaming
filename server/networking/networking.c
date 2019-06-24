@@ -36,7 +36,7 @@ int create_connection (int socket, const char * ip, int port, SOCKET_TYPE type)
 {
     if (type == TCP)
     {
-        printf("Attempting TCP connection");
+        fprintf(stdout,"Attempting TCP connection\n");
         struct sockaddr_in address;
         
         address.sin_family = AF_INET;
@@ -44,7 +44,7 @@ int create_connection (int socket, const char * ip, int port, SOCKET_TYPE type)
         address.sin_port = htons(port);
         memset( &( address.sin_zero ), '\0', 8 );
 
-        printf("Connecting to %s:%d...\n", ip, port);
+        fprintf(stdout,"Connecting to %s:%d...\n", ip, port);
 
         int state = connect(socket, (struct sockaddr *) & address, sizeof(struct sockaddr));
 
@@ -55,12 +55,13 @@ int create_connection (int socket, const char * ip, int port, SOCKET_TYPE type)
             return state;
         }
 
-        printf("Connected with socket, id: %d\n", socket);
+        fprintf(stdout,"Connected with socket, id: %d\n", socket);
 
         return state;
+    }else{
+        fprintf(stderr,"Unsuported socket type\n");
+        return -1;
     }
-    //todo
-    return -1;
 }
 
 
@@ -71,7 +72,7 @@ int send_message_int(int socket, int message, int message_size){
     ssize_t len = send(socket, buff, message_size+22, 0);
         if (len < 0)
         {
-              fprintf(stderr, "Error on sending message --> %s", strerror(errno));
+              fprintf(stderr, "Error on sending message --> %s\n", strerror(errno));
               free(buff);
               return 1;
         }
@@ -151,7 +152,7 @@ int disconnect (int socket)
         fprintf(stderr, "Failed to close connection for socket, id: %d: %s\n", socket, strerror(errno));
         exit(1);
     }
-    printf("Closing connection with socket, id: %d\n", socket);
+    fprintf(stdout,"Closing connection with socket, id: %d\n", socket);
 
     return status;
 }

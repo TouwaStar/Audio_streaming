@@ -90,7 +90,7 @@ int accept_connection (int socket)
         exit(1);
     }
 
-    printf("Accepted connection with client  %s:%d\n", ip, port);
+    fprintf(stdout,"Accepted connection with client  %s:%d\n", ip, port);
 
     return peer_socket;
 }
@@ -110,7 +110,7 @@ int listen_to_socket (int socket, int log, SOCKET_TYPE type)
             exit(1);
         }
 
-        printf("Listening to socket, id: %d with log %d\n", socket, log);
+        fprintf(stdout,"Listening to socket, id: %d with log %d\n", socket, log);
 
         return listen_status;
     }

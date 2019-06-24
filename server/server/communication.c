@@ -7,11 +7,9 @@
  * the property. 
  */
 int send_audio_property(int socket, int property){
-    receive_data(socket);
      if(send_message_int(socket, property, sizeof(property))>0){
         return 1;
      }
-    receive_data(socket);
     return 0;
 }
 

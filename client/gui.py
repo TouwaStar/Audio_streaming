@@ -62,16 +62,22 @@ class Gui(object):
         green = 0
 
         while self.running:
-            screen.fill([0,green,0])
-            green += 1
-            if green > 200:
-                green = 0
-            clock.tick(30)
-            pygame.display.flip()
-
-            pygame.draw.rect(screen,[40,0,220],(100,100,100,100))
-            self._handle_input()
             
+            try:
+                screen.fill([0,green,0])
+                green += 1
+                if green > 200:
+                    green = 0
+                clock.tick(30)
+                pygame.display.flip()
+
+                pygame.draw.rect(screen,[40,0,220],(100,100,100,100))
+                self._handle_input()
+                
+            except Exception as e:
+                print(f"Gui exception, closing window {repr(e)}")
+                self.running = False
+                
             if not self.running:
                 pygame.quit()
             
