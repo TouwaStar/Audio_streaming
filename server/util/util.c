@@ -13,7 +13,7 @@ typedef enum{WINDOWS = 1, POSIX = 2} SYS;
 
 #ifdef _WIN32
     #define SYSTEM WINDOWS
-#else 
+#else
     #define SYSTEM POSIX
     #include <ifaddrs.h>
 #endif
@@ -27,21 +27,20 @@ typedef enum{WINDOWS = 1, POSIX = 2} SYS;
  */
 #ifdef _WIN32
 char* get_own_ip(){
-    char hostbuffer[256]; 
-    char *IPbuffer; 
-    struct hostent *host_entry; 
-    
-    gethostname(hostbuffer, sizeof(hostbuffer)); 
-    host_entry = gethostbyname(hostbuffer); 
-    IPbuffer = inet_ntoa(*((struct in_addr*) 
-                           host_entry->h_addr_list[0])); 
+    char hostbuffer[256];
+    char *IPbuffer;
+    struct hostent *host_entry;
+
+    gethostname(hostbuffer, sizeof(hostbuffer));
+    host_entry = gethostbyname(hostbuffer);
+    IPbuffer = inet_ntoa(*((struct in_addr*)
+                           host_entry->h_addr_list[0]));
     return IPbuffer;
 }
 #else
 char* get_own_ip(){
     struct ifaddrs *id;
-    int val;
-    val = getifaddrs(&id);
+    getifaddrs(&id);
     return id->ifa_addr;
 }
 #endif
@@ -50,7 +49,7 @@ char* get_own_ip(){
  * Opens the file at specified path, returns the file descriptor.
  */
 int open_file(char* path){
-        
+
     int fd = open(path, O_RDONLY);
         if (fd == -1)
         {
@@ -70,7 +69,7 @@ char** get_files_in_directory_dynamic( char* directory, int* number_of_files){
     DIR *d;
     struct dirent *dir;
     d = opendir(directory);
-    
+
     char **files = calloc(100,100);
     if (d)
     {
@@ -114,7 +113,7 @@ void get_file_stat(int fd, struct stat *file_stat){
 char* create_path_dynamic(char* string_a, char* string_b){
     char * path;
     if( (path = malloc(strlen(string_a)+strlen(string_b)+2)) != NULL){
-        path[0] = '\0';   
+        path[0] = '\0';
         strcat(path,string_a);
         strcat(path,"/");
         strcat(path,string_b);
