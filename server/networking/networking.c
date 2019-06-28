@@ -38,7 +38,7 @@ int create_connection (int socket, const char * ip, int port, SOCKET_TYPE type)
     {
         fprintf(stdout,"Attempting TCP connection\n");
         struct sockaddr_in address;
-        
+
         address.sin_family = AF_INET;
         address.sin_addr.s_addr = inet_addr(ip);
         address.sin_port = htons(port);
@@ -76,7 +76,7 @@ int send_message_int(int socket, int message, int message_size){
               free(buff);
               return 1;
         }
-    
+
     free(buff);
     return 0;
 }
@@ -98,12 +98,12 @@ int send_message_char(int socket, char* message, int message_size){
     ssize_t len = send(socket, buff, strlen(buff), 0);
     if (len < 0)
     {
-            fprintf(stderr, "Error on sending message --> %s, %d", strerror(errno),len);
+            fprintf(stderr, "Error on sending message --> %s, %ld", strerror(errno),len);
             free(buff);
             return 1;
     }
     if (len != strlen(buff)){
-        fprintf(stderr,"Couldn't send the full message --> %s, %d",strerror(errno),len);
+        fprintf(stderr,"Couldn't send the full message --> %s, %ld",strerror(errno),len);
         free(buff);
         return 1;
     }
@@ -114,7 +114,7 @@ int send_message_char(int socket, char* message, int message_size){
 
 
 /**
- * Send the specified audio frames to the provided socket 
+ * Send the specified audio frames to the provided socket
  */
 int send_frames(int socket, int* frames, int items_to_send, int size_of_frame, int frames_in_message){
 
@@ -126,7 +126,7 @@ int send_frames(int socket, int* frames, int items_to_send, int size_of_frame, i
             if( offset <0){
                 fprintf(stderr,"Failed to prepare frame for sending\n");
                 free(buff);
-                return 1; 
+                return 1;
             }
         }
         fprintf(stdout,"Sending frame %d out of %d, content %s\n",i,items_to_send,buff);
@@ -137,7 +137,7 @@ int send_frames(int socket, int* frames, int items_to_send, int size_of_frame, i
             return 1;
         };
         i = i+frames_in_message;
-        
+
         free(buff);
     }
     fprintf(stdout,"Sent all frames\n");

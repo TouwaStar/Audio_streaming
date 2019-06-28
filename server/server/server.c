@@ -1,6 +1,11 @@
 #include "communication.c"
 #include "../util/util.c"
+
+#if defined(_WIN32)
 #include "../third_party/sndfile.h"
+#else
+#include "../third_party/sndfilel.h"
+#endif // defined
 
 #include "math.h"
 #include "limits.h"
@@ -29,13 +34,13 @@ struct {
     char* BUFFER_SIZE;
     char* STREAM_SONG;
 } Commands = {
-"GIVE_SONG_LIST", 
-"SET_SONG_", 
+"GIVE_SONG_LIST",
+"SET_SONG_",
 "GIVE_SAMPLING_RATE",
 "GIVE_CHANNELS",
 "GIVE_SONG_LENGTH",
-"GIVE_NUMBER_OF_FRAMES", 
-"GIVE_BUFFER_SIZE", 
+"GIVE_NUMBER_OF_FRAMES",
+"GIVE_BUFFER_SIZE",
 "GIVE_STREAM_SONG"};
 
 
@@ -47,7 +52,7 @@ struct {
 int main(int argc, char **argv)
 {
 
-    
+
     int port;
 
     char* path_to_songs = NULL;
@@ -64,7 +69,7 @@ int main(int argc, char **argv)
     int *frames = NULL;
 
     int size_of_frame;
-    
+
     void cleanup(){
         fprintf(stderr,"Cleanup\n");
 
@@ -83,11 +88,10 @@ int main(int argc, char **argv)
      *  Parsing of command line arguments
      *  Initializing System Specific features
      * */
-    if (SYSTEM == WINDOWS){
-            WSADATA data;
-            WSAStartup(MAKEWORD(2,2), &data);
-        }
-
+    #if defined(_WIN32)
+    WSADATA data;
+    WSAStartup(MAKEWORD(2,2), &data);
+    #endif
     if (argc<2)
     {
         // Use default
@@ -106,7 +110,7 @@ int main(int argc, char **argv)
         // No path provided, attempting to use relative default
         DIR* dir = opendir(PATH_TO_SONGS);
         if (dir) {
-        // Directory exists. 
+        // Directory exists.
         closedir(dir);
         }else{
         // Relative default doesn't exist
@@ -128,7 +132,7 @@ int main(int argc, char **argv)
     char* request;
     while(1){
 
-    
+
         free(request);
         request = retrieve_message_dynamic(peer_socket);
 
@@ -136,13 +140,13 @@ int main(int argc, char **argv)
             listen_to_socket(socket, QUEUE,TCP);
             peer_socket = accept_connection(socket);
         }
-    
+
         // Is the client asking for song list
         if(strcmp(request,Commands.SONG_LIST) == 0){
             if(send_songs_list_to_client(peer_socket, path_to_songs)>0){
                 send_message_char(peer_socket,"FATAL",SIZE_OF_FATAL);
             };
-            
+
         }
 
         // Is the client telling us to set a song
@@ -154,7 +158,7 @@ int main(int argc, char **argv)
             tempchar[strlen(Commands.SET_SONG)] = '\0';
             if(strcmp(tempchar,Commands.SET_SONG)==0){
                 // todo
-                
+
                 int i = strlen(Commands.SET_SONG);
                 int j = 0;
                 char song[BUFF];
@@ -170,7 +174,7 @@ int main(int argc, char **argv)
             }
         }
 
-        
+
         if (strcmp(request,Commands.SAMPLING_RATE) == 0){
             fprintf(stdout,"Client asked for sampling rate\n");
             if(file == NULL){
@@ -180,11 +184,11 @@ int main(int argc, char **argv)
             else if(send_audio_property(peer_socket, file_info.samplerate) > 0){
                 fprintf(stderr,"Sending sampling rate failed\n");
                 send_message_char(peer_socket,"FATAL",SIZE_OF_FATAL);
-                
+
             }
-            
+
             fprintf(stdout,"Sampling rate: %d\n",file_info.samplerate);
-            
+
 
         }
 
@@ -196,7 +200,7 @@ int main(int argc, char **argv)
             else if(send_audio_property(peer_socket, file_info.channels) > 0){
                 send_message_char(peer_socket,"FATAL",SIZE_OF_FATAL);
             }
-            
+
             fprintf(stdout,"Number of channels: %d\n",file_info.channels);
 
         }
@@ -208,21 +212,21 @@ int main(int argc, char **argv)
                 send_message_char(peer_socket,"NO_SONG_SELECTED",strlen("NO_SONG_SELECTED")+2);
             }
 
-            fprintf(stdout,"Number of frames in file: %I64i\n", file_info.frames);
-            
+            fprintf(stdout,"Number of frames in file: %I64li\n", file_info.frames);
+
             items_to_alocate = file_info.frames * file_info.channels;
             frames = calloc(items_to_alocate, sizeof(int));
             int number_of_frames = sf_readf_int(file, frames, file_info.frames);
             fprintf(stdout,"Number of frames read: %d\n", number_of_frames);
-            fprintf(stdout,"Size of single frame: %d\n", sizeof(frames[0]));
-                
+            fprintf(stdout,"Size of single frame: %ld\n", sizeof(frames[0]));
+
             // Calculate how big the frame needs to be after transforming from int to chars
             size_of_frame = floor(log10(llabs(LLONG_MAX)))+2;
             send_audio_property(peer_socket, size_of_frame*FRAMES_IN_MESSAGE);
-    
+
             send_frames(peer_socket,frames,items_to_alocate,size_of_frame,FRAMES_IN_MESSAGE);
             send_message_char(peer_socket,"EOM",sizeof("EOM"));\
-        
+
             fprintf(stdout,"Number of channels: %d\n",file_info.channels);
 
         }
@@ -234,17 +238,16 @@ int main(int argc, char **argv)
             else if(send_audio_property(peer_socket, file_info.frames/file_info.samplerate) > 0){
                 send_message_char(peer_socket,"FATAL",SIZE_OF_FATAL);
             }
-            
-            fprintf(stdout,"Song length %I64d\n",file_info.frames/file_info.samplerate);
+
+            fprintf(stdout,"Song length %I64li\n",file_info.frames/file_info.samplerate);
         }
-        
 
-        
+
+
 
     }
-
-    if (SYSTEM == WINDOWS){
-        WSACleanup();
-    }
+    #if defined(_WIN32)
+    WSACleanup();
+    #endif
     return 0;
 }
