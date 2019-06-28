@@ -1,0 +1,58 @@
+\hypertarget{communication_8c}{}\section{server/server/communication.c File Reference}
+\label{communication_8c}\index{server/server/communication.c@{server/server/communication.c}}
+{\ttfamily \#include \char`\"{}../networking/networking.\+c\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../util/util.\+c\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{communication_8c_a9b54ad490ffe95d94bac550922740244}{send\+\_\+audio\+\_\+property}} (int socket, int property)
+\item 
+int \mbox{\hyperlink{communication_8c_a09bf51474eb560b873c45d04769df3bf}{\+\_\+send\+\_\+available\+\_\+songs}} (int socket, char $\ast$$\ast$song\+\_\+list, int number\+\_\+of\+\_\+songs)
+\item 
+int \mbox{\hyperlink{communication_8c_af20956916718ad7d257e37c44132af08}{send\+\_\+songs\+\_\+list\+\_\+to\+\_\+client}} (int socket, char $\ast$path\+\_\+to\+\_\+songs)
+\item 
+char $\ast$ \mbox{\hyperlink{communication_8c_a20423a5dc9c5a2f78df7e3f74267874b}{get\+\_\+song\+\_\+to\+\_\+stream\+\_\+dynamic}} (int socket)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{communication_8c_a09bf51474eb560b873c45d04769df3bf}\label{communication_8c_a09bf51474eb560b873c45d04769df3bf}} 
+\index{communication.c@{communication.c}!\_send\_available\_songs@{\_send\_available\_songs}}
+\index{\_send\_available\_songs@{\_send\_available\_songs}!communication.c@{communication.c}}
+\subsubsection{\texorpdfstring{\_send\_available\_songs()}{\_send\_available\_songs()}}
+{\footnotesize\ttfamily int \+\_\+send\+\_\+available\+\_\+songs (\begin{DoxyParamCaption}\item[{int}]{socket,  }\item[{char $\ast$$\ast$}]{song\+\_\+list,  }\item[{int}]{number\+\_\+of\+\_\+songs }\end{DoxyParamCaption})}
+
+Sends over the socket songs from the provided song list up to a number provided in parameter 
+
+Definition at line 20 of file communication.\+c.
+
+\mbox{\Hypertarget{communication_8c_a20423a5dc9c5a2f78df7e3f74267874b}\label{communication_8c_a20423a5dc9c5a2f78df7e3f74267874b}} 
+\index{communication.c@{communication.c}!get\_song\_to\_stream\_dynamic@{get\_song\_to\_stream\_dynamic}}
+\index{get\_song\_to\_stream\_dynamic@{get\_song\_to\_stream\_dynamic}!communication.c@{communication.c}}
+\subsubsection{\texorpdfstring{get\_song\_to\_stream\_dynamic()}{get\_song\_to\_stream\_dynamic()}}
+{\footnotesize\ttfamily char$\ast$ get\+\_\+song\+\_\+to\+\_\+stream\+\_\+dynamic (\begin{DoxyParamCaption}\item[{int}]{socket }\end{DoxyParamCaption})}
+
+Retrieves the name of the song to stream to the client from the specified socket. 
+
+Definition at line 51 of file communication.\+c.
+
+\mbox{\Hypertarget{communication_8c_a9b54ad490ffe95d94bac550922740244}\label{communication_8c_a9b54ad490ffe95d94bac550922740244}} 
+\index{communication.c@{communication.c}!send\_audio\_property@{send\_audio\_property}}
+\index{send\_audio\_property@{send\_audio\_property}!communication.c@{communication.c}}
+\subsubsection{\texorpdfstring{send\_audio\_property()}{send\_audio\_property()}}
+{\footnotesize\ttfamily int send\+\_\+audio\+\_\+property (\begin{DoxyParamCaption}\item[{int}]{socket,  }\item[{int}]{property }\end{DoxyParamCaption})}
+
+Sends a generic audio property for example \char`\"{}\+Sampling\char`\"{} rate to the provided socket Expects a message before and after sending indicating the will and readiness to receive the property. 
+
+Definition at line 9 of file communication.\+c.
+
+\mbox{\Hypertarget{communication_8c_af20956916718ad7d257e37c44132af08}\label{communication_8c_af20956916718ad7d257e37c44132af08}} 
+\index{communication.c@{communication.c}!send\_songs\_list\_to\_client@{send\_songs\_list\_to\_client}}
+\index{send\_songs\_list\_to\_client@{send\_songs\_list\_to\_client}!communication.c@{communication.c}}
+\subsubsection{\texorpdfstring{send\_songs\_list\_to\_client()}{send\_songs\_list\_to\_client()}}
+{\footnotesize\ttfamily int send\+\_\+songs\+\_\+list\+\_\+to\+\_\+client (\begin{DoxyParamCaption}\item[{int}]{socket,  }\item[{char $\ast$}]{path\+\_\+to\+\_\+songs }\end{DoxyParamCaption})}
+
+Send songs from specified directory to the specified socket 
+
+Definition at line 37 of file communication.\+c.
+

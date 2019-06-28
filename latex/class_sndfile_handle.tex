@@ -1,0 +1,546 @@
+\hypertarget{class_sndfile_handle}{}\section{Sndfile\+Handle Class Reference}
+\label{class_sndfile_handle}\index{SndfileHandle@{SndfileHandle}}
+
+
+{\ttfamily \#include $<$sndfile.\+hh$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_sndfile_handle_a90b0e918f3531329dfb4ab0988187add}{Sndfile\+Handle}} (void)
+\item 
+\mbox{\hyperlink{class_sndfile_handle_a60e5ec8dac736c5f3a2fdc95e7e9c70e}{Sndfile\+Handle}} (const char $\ast$path, int mode=\mbox{\hyperlink{sndfile_8h_adc29c2ff13d900c2f185ee95427fb06ca125531fe9c895237bccd35736370e815}{S\+F\+M\+\_\+\+R\+E\+AD}}, int \mbox{\hyperlink{class_sndfile_handle_a72b47b9aee449744817a2d6d702ab457}{format}}=0, int \mbox{\hyperlink{class_sndfile_handle_a710add6f87468ca8f9dc444bf35e7ebc}{channels}}=0, int \mbox{\hyperlink{class_sndfile_handle_aa4db003e80513fff2f861cc17d459911}{samplerate}}=0)
+\item 
+\mbox{\hyperlink{class_sndfile_handle_af782c1d529a09587c127272bd96cb42a}{Sndfile\+Handle}} (std\+::string const \&path, int mode=\mbox{\hyperlink{sndfile_8h_adc29c2ff13d900c2f185ee95427fb06ca125531fe9c895237bccd35736370e815}{S\+F\+M\+\_\+\+R\+E\+AD}}, int \mbox{\hyperlink{class_sndfile_handle_a72b47b9aee449744817a2d6d702ab457}{format}}=0, int \mbox{\hyperlink{class_sndfile_handle_a710add6f87468ca8f9dc444bf35e7ebc}{channels}}=0, int \mbox{\hyperlink{class_sndfile_handle_aa4db003e80513fff2f861cc17d459911}{samplerate}}=0)
+\item 
+\mbox{\hyperlink{class_sndfile_handle_a3cbcef78befb00c3ad7391754a9c0343}{Sndfile\+Handle}} (int fd, bool close\+\_\+desc, int mode=\mbox{\hyperlink{sndfile_8h_adc29c2ff13d900c2f185ee95427fb06ca125531fe9c895237bccd35736370e815}{S\+F\+M\+\_\+\+R\+E\+AD}}, int \mbox{\hyperlink{class_sndfile_handle_a72b47b9aee449744817a2d6d702ab457}{format}}=0, int \mbox{\hyperlink{class_sndfile_handle_a710add6f87468ca8f9dc444bf35e7ebc}{channels}}=0, int \mbox{\hyperlink{class_sndfile_handle_aa4db003e80513fff2f861cc17d459911}{samplerate}}=0)
+\item 
+\mbox{\hyperlink{class_sndfile_handle_a4c0aa4c1c1403c8ee28287a40eda0ddc}{Sndfile\+Handle}} (\mbox{\hyperlink{struct_s_f___v_i_r_t_u_a_l___i_o}{S\+F\+\_\+\+V\+I\+R\+T\+U\+A\+L\+\_\+\+IO}} \&sfvirtual, void $\ast$user\+\_\+data, int mode=\mbox{\hyperlink{sndfile_8h_adc29c2ff13d900c2f185ee95427fb06ca125531fe9c895237bccd35736370e815}{S\+F\+M\+\_\+\+R\+E\+AD}}, int \mbox{\hyperlink{class_sndfile_handle_a72b47b9aee449744817a2d6d702ab457}{format}}=0, int \mbox{\hyperlink{class_sndfile_handle_a710add6f87468ca8f9dc444bf35e7ebc}{channels}}=0, int \mbox{\hyperlink{class_sndfile_handle_aa4db003e80513fff2f861cc17d459911}{samplerate}}=0)
+\item 
+\mbox{\hyperlink{class_sndfile_handle_a64618c3e3c7537b621a9a00b4db18168}{$\sim$\+Sndfile\+Handle}} (void)
+\item 
+\mbox{\hyperlink{class_sndfile_handle_af9c8bc95a16a9cc913586623c29a3bcd}{Sndfile\+Handle}} (const \mbox{\hyperlink{class_sndfile_handle}{Sndfile\+Handle}} \&orig)
+\item 
+\mbox{\hyperlink{class_sndfile_handle}{Sndfile\+Handle}} \& \mbox{\hyperlink{class_sndfile_handle_af7f77c3dbd655daed9648b702329ca86}{operator=}} (const \mbox{\hyperlink{class_sndfile_handle}{Sndfile\+Handle}} \&rhs)
+\item 
+int \mbox{\hyperlink{class_sndfile_handle_a6b56dc2dbe66af6b1fe44adf0f4f371a}{ref\+Count}} (void) const
+\item 
+\mbox{\hyperlink{class_sndfile_handle_a7f99c56f1af1f6d74c1312a05aaf1a12}{operator bool}} () const
+\item 
+bool \mbox{\hyperlink{class_sndfile_handle_a37b4778ae0a0e7125f68ea872cecc8e0}{operator==}} (const \mbox{\hyperlink{class_sndfile_handle}{Sndfile\+Handle}} \&rhs) const
+\item 
+\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} \mbox{\hyperlink{class_sndfile_handle_a12c7de95fd3134419bf755020d5a018c}{frames}} (void) const
+\item 
+int \mbox{\hyperlink{class_sndfile_handle_a72b47b9aee449744817a2d6d702ab457}{format}} (void) const
+\item 
+int \mbox{\hyperlink{class_sndfile_handle_a710add6f87468ca8f9dc444bf35e7ebc}{channels}} (void) const
+\item 
+int \mbox{\hyperlink{class_sndfile_handle_aa4db003e80513fff2f861cc17d459911}{samplerate}} (void) const
+\item 
+int \mbox{\hyperlink{class_sndfile_handle_a3918868973e847faad5427697a2ed610}{error}} (void) const
+\item 
+const char $\ast$ \mbox{\hyperlink{class_sndfile_handle_a1405842e7e672b9789075bf8a4983a13}{str\+Error}} (void) const
+\item 
+int \mbox{\hyperlink{class_sndfile_handle_a3646fc2e30b01abefe91524e80da6d6e}{command}} (int cmd, void $\ast$data, int datasize)
+\item 
+\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} \mbox{\hyperlink{class_sndfile_handle_a0751c210cba5d0d757ce801381743ef3}{seek}} (\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} \mbox{\hyperlink{class_sndfile_handle_a12c7de95fd3134419bf755020d5a018c}{frames}}, int whence)
+\item 
+void \mbox{\hyperlink{class_sndfile_handle_a7d7e6ec33d07dfae354c2909fafcdbb2}{write\+Sync}} (void)
+\item 
+int \mbox{\hyperlink{class_sndfile_handle_a6fa21cda95c6016c9f2f133d2e94da8b}{set\+String}} (int str\+\_\+type, const char $\ast$str)
+\item 
+const char $\ast$ \mbox{\hyperlink{class_sndfile_handle_a22653a8f3f77584ae027179371d6bd9b}{get\+String}} (int str\+\_\+type) const
+\item 
+\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} \mbox{\hyperlink{class_sndfile_handle_ae3125a94ea83be0193dead02b151d008}{read}} (short $\ast$ptr, \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} items)
+\item 
+\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} \mbox{\hyperlink{class_sndfile_handle_af6d8fa499d36a9bd68301023800ac8b9}{read}} (int $\ast$ptr, \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} items)
+\item 
+\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} \mbox{\hyperlink{class_sndfile_handle_aa2ee9aaafe7baa6b7e5d26e9dd2a0321}{read}} (float $\ast$ptr, \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} items)
+\item 
+\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} \mbox{\hyperlink{class_sndfile_handle_a44892d06c66e34bfc5f1948ee58b43ac}{read}} (double $\ast$ptr, \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} items)
+\item 
+\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} \mbox{\hyperlink{class_sndfile_handle_ae7aac54beecd7eb08d080f4e6cd171f4}{write}} (const short $\ast$ptr, \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} items)
+\item 
+\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} \mbox{\hyperlink{class_sndfile_handle_a6c787b63a36e8c432c38aad125444239}{write}} (const int $\ast$ptr, \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} items)
+\item 
+\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} \mbox{\hyperlink{class_sndfile_handle_a25f654f209d8ef92c988be402384dbff}{write}} (const float $\ast$ptr, \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} items)
+\item 
+\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} \mbox{\hyperlink{class_sndfile_handle_aa659622dcc3b1c838c8395b008e80416}{write}} (const double $\ast$ptr, \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} items)
+\item 
+\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} \mbox{\hyperlink{class_sndfile_handle_aea11dfe64ff49f514068969cd8f8ed38}{readf}} (short $\ast$ptr, \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} \mbox{\hyperlink{class_sndfile_handle_a12c7de95fd3134419bf755020d5a018c}{frames}})
+\item 
+\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} \mbox{\hyperlink{class_sndfile_handle_a3484df57698b0fc6f8835c864e48c8e0}{readf}} (int $\ast$ptr, \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} \mbox{\hyperlink{class_sndfile_handle_a12c7de95fd3134419bf755020d5a018c}{frames}})
+\item 
+\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} \mbox{\hyperlink{class_sndfile_handle_af8214c9c6501fb05bc64df83ba85fb6e}{readf}} (float $\ast$ptr, \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} \mbox{\hyperlink{class_sndfile_handle_a12c7de95fd3134419bf755020d5a018c}{frames}})
+\item 
+\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} \mbox{\hyperlink{class_sndfile_handle_a00da31b8ed6ac1da69330c27adb9297c}{readf}} (double $\ast$ptr, \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} \mbox{\hyperlink{class_sndfile_handle_a12c7de95fd3134419bf755020d5a018c}{frames}})
+\item 
+\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} \mbox{\hyperlink{class_sndfile_handle_aaeef77f4a93210244e21f913b3c378b4}{writef}} (const short $\ast$ptr, \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} \mbox{\hyperlink{class_sndfile_handle_a12c7de95fd3134419bf755020d5a018c}{frames}})
+\item 
+\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} \mbox{\hyperlink{class_sndfile_handle_a841acc6961dcca46bbb88aee97ebaeb2}{writef}} (const int $\ast$ptr, \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} \mbox{\hyperlink{class_sndfile_handle_a12c7de95fd3134419bf755020d5a018c}{frames}})
+\item 
+\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} \mbox{\hyperlink{class_sndfile_handle_a8f862bf6d6d48246fa5cbb46464bf4c2}{writef}} (const float $\ast$ptr, \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} \mbox{\hyperlink{class_sndfile_handle_a12c7de95fd3134419bf755020d5a018c}{frames}})
+\item 
+\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} \mbox{\hyperlink{class_sndfile_handle_a96ff069df0294554fb906a8b04bad662}{writef}} (const double $\ast$ptr, \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} \mbox{\hyperlink{class_sndfile_handle_a12c7de95fd3134419bf755020d5a018c}{frames}})
+\item 
+\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} \mbox{\hyperlink{class_sndfile_handle_a5dfeda9653d5c9c70552fb67f60d52c4}{read\+Raw}} (void $\ast$ptr, \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} bytes)
+\item 
+\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} \mbox{\hyperlink{class_sndfile_handle_a2557a434e75581b864635088f9de4ee5}{write\+Raw}} (const void $\ast$ptr, \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} bytes)
+\item 
+\mbox{\hyperlink{sndfile_8h_ac14209bc83d532b06a8cdf9ade6d544a}{S\+N\+D\+F\+I\+LE}} $\ast$ \mbox{\hyperlink{class_sndfile_handle_a605153c4c3e84557cd60eb3978fc8539}{raw\+Handle}} (void)
+\item 
+\mbox{\hyperlink{sndfile_8h_ac14209bc83d532b06a8cdf9ade6d544a}{S\+N\+D\+F\+I\+LE}} $\ast$ \mbox{\hyperlink{class_sndfile_handle_a9461ef4669a8df24945e846fb28875b2}{take\+Ownership}} (void)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{class_sndfile_handle_aeffce59efad6081b25cd1bb24bf37ef1}{format\+Check}} (int \mbox{\hyperlink{class_sndfile_handle_a72b47b9aee449744817a2d6d702ab457}{format}}, int \mbox{\hyperlink{class_sndfile_handle_a710add6f87468ca8f9dc444bf35e7ebc}{channels}}, int \mbox{\hyperlink{class_sndfile_handle_aa4db003e80513fff2f861cc17d459911}{samplerate}})
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 60 of file sndfile.\+hh.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_sndfile_handle_a90b0e918f3531329dfb4ab0988187add}\label{class_sndfile_handle_a90b0e918f3531329dfb4ab0988187add}} 
+\index{SndfileHandle@{SndfileHandle}!SndfileHandle@{SndfileHandle}}
+\index{SndfileHandle@{SndfileHandle}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{SndfileHandle()}{SndfileHandle()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily Sndfile\+Handle\+::\+Sndfile\+Handle (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 75 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_a60e5ec8dac736c5f3a2fdc95e7e9c70e}\label{class_sndfile_handle_a60e5ec8dac736c5f3a2fdc95e7e9c70e}} 
+\index{SndfileHandle@{SndfileHandle}!SndfileHandle@{SndfileHandle}}
+\index{SndfileHandle@{SndfileHandle}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{SndfileHandle()}{SndfileHandle()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily Sndfile\+Handle\+::\+Sndfile\+Handle (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path,  }\item[{int}]{mode = {\ttfamily \mbox{\hyperlink{sndfile_8h_adc29c2ff13d900c2f185ee95427fb06ca125531fe9c895237bccd35736370e815}{S\+F\+M\+\_\+\+R\+E\+AD}}},  }\item[{int}]{format = {\ttfamily 0},  }\item[{int}]{channels = {\ttfamily 0},  }\item[{int}]{samplerate = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 166 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_af782c1d529a09587c127272bd96cb42a}\label{class_sndfile_handle_af782c1d529a09587c127272bd96cb42a}} 
+\index{SndfileHandle@{SndfileHandle}!SndfileHandle@{SndfileHandle}}
+\index{SndfileHandle@{SndfileHandle}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{SndfileHandle()}{SndfileHandle()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily Sndfile\+Handle\+::\+Sndfile\+Handle (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{path,  }\item[{int}]{mode = {\ttfamily \mbox{\hyperlink{sndfile_8h_adc29c2ff13d900c2f185ee95427fb06ca125531fe9c895237bccd35736370e815}{S\+F\+M\+\_\+\+R\+E\+AD}}},  }\item[{int}]{format = {\ttfamily 0},  }\item[{int}]{channels = {\ttfamily 0},  }\item[{int}]{samplerate = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 188 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_a3cbcef78befb00c3ad7391754a9c0343}\label{class_sndfile_handle_a3cbcef78befb00c3ad7391754a9c0343}} 
+\index{SndfileHandle@{SndfileHandle}!SndfileHandle@{SndfileHandle}}
+\index{SndfileHandle@{SndfileHandle}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{SndfileHandle()}{SndfileHandle()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily Sndfile\+Handle\+::\+Sndfile\+Handle (\begin{DoxyParamCaption}\item[{int}]{fd,  }\item[{bool}]{close\+\_\+desc,  }\item[{int}]{mode = {\ttfamily \mbox{\hyperlink{sndfile_8h_adc29c2ff13d900c2f185ee95427fb06ca125531fe9c895237bccd35736370e815}{S\+F\+M\+\_\+\+R\+E\+AD}}},  }\item[{int}]{format = {\ttfamily 0},  }\item[{int}]{channels = {\ttfamily 0},  }\item[{int}]{samplerate = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 210 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_a4c0aa4c1c1403c8ee28287a40eda0ddc}\label{class_sndfile_handle_a4c0aa4c1c1403c8ee28287a40eda0ddc}} 
+\index{SndfileHandle@{SndfileHandle}!SndfileHandle@{SndfileHandle}}
+\index{SndfileHandle@{SndfileHandle}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{SndfileHandle()}{SndfileHandle()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily Sndfile\+Handle\+::\+Sndfile\+Handle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_s_f___v_i_r_t_u_a_l___i_o}{S\+F\+\_\+\+V\+I\+R\+T\+U\+A\+L\+\_\+\+IO}} \&}]{sfvirtual,  }\item[{void $\ast$}]{user\+\_\+data,  }\item[{int}]{mode = {\ttfamily \mbox{\hyperlink{sndfile_8h_adc29c2ff13d900c2f185ee95427fb06ca125531fe9c895237bccd35736370e815}{S\+F\+M\+\_\+\+R\+E\+AD}}},  }\item[{int}]{format = {\ttfamily 0},  }\item[{int}]{channels = {\ttfamily 0},  }\item[{int}]{samplerate = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 235 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_a64618c3e3c7537b621a9a00b4db18168}\label{class_sndfile_handle_a64618c3e3c7537b621a9a00b4db18168}} 
+\index{SndfileHandle@{SndfileHandle}!````~SndfileHandle@{$\sim$SndfileHandle}}
+\index{````~SndfileHandle@{$\sim$SndfileHandle}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{$\sim$SndfileHandle()}{~SndfileHandle()}}
+{\footnotesize\ttfamily Sndfile\+Handle\+::$\sim$\+Sndfile\+Handle (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 257 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_af9c8bc95a16a9cc913586623c29a3bcd}\label{class_sndfile_handle_af9c8bc95a16a9cc913586623c29a3bcd}} 
+\index{SndfileHandle@{SndfileHandle}!SndfileHandle@{SndfileHandle}}
+\index{SndfileHandle@{SndfileHandle}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{SndfileHandle()}{SndfileHandle()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily Sndfile\+Handle\+::\+Sndfile\+Handle (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_sndfile_handle}{Sndfile\+Handle}} \&}]{orig }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 264 of file sndfile.\+hh.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_sndfile_handle_a710add6f87468ca8f9dc444bf35e7ebc}\label{class_sndfile_handle_a710add6f87468ca8f9dc444bf35e7ebc}} 
+\index{SndfileHandle@{SndfileHandle}!channels@{channels}}
+\index{channels@{channels}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{channels()}{channels()}}
+{\footnotesize\ttfamily int Sndfile\+Handle\+::channels (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 104 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_a3646fc2e30b01abefe91524e80da6d6e}\label{class_sndfile_handle_a3646fc2e30b01abefe91524e80da6d6e}} 
+\index{SndfileHandle@{SndfileHandle}!command@{command}}
+\index{command@{command}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{command()}{command()}}
+{\footnotesize\ttfamily int Sndfile\+Handle\+::command (\begin{DoxyParamCaption}\item[{int}]{cmd,  }\item[{void $\ast$}]{data,  }\item[{int}]{datasize }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 294 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_a3918868973e847faad5427697a2ed610}\label{class_sndfile_handle_a3918868973e847faad5427697a2ed610}} 
+\index{SndfileHandle@{SndfileHandle}!error@{error}}
+\index{error@{error}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{error()}{error()}}
+{\footnotesize\ttfamily int Sndfile\+Handle\+::error (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 286 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_a72b47b9aee449744817a2d6d702ab457}\label{class_sndfile_handle_a72b47b9aee449744817a2d6d702ab457}} 
+\index{SndfileHandle@{SndfileHandle}!format@{format}}
+\index{format@{format}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{format()}{format()}}
+{\footnotesize\ttfamily int Sndfile\+Handle\+::format (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 103 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_aeffce59efad6081b25cd1bb24bf37ef1}\label{class_sndfile_handle_aeffce59efad6081b25cd1bb24bf37ef1}} 
+\index{SndfileHandle@{SndfileHandle}!formatCheck@{formatCheck}}
+\index{formatCheck@{formatCheck}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{formatCheck()}{formatCheck()}}
+{\footnotesize\ttfamily int Sndfile\+Handle\+::format\+Check (\begin{DoxyParamCaption}\item[{int}]{format,  }\item[{int}]{channels,  }\item[{int}]{samplerate }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line 314 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_a12c7de95fd3134419bf755020d5a018c}\label{class_sndfile_handle_a12c7de95fd3134419bf755020d5a018c}} 
+\index{SndfileHandle@{SndfileHandle}!frames@{frames}}
+\index{frames@{frames}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{frames()}{frames()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} Sndfile\+Handle\+::frames (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 102 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_a22653a8f3f77584ae027179371d6bd9b}\label{class_sndfile_handle_a22653a8f3f77584ae027179371d6bd9b}} 
+\index{SndfileHandle@{SndfileHandle}!getString@{getString}}
+\index{getString@{getString}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{getString()}{getString()}}
+{\footnotesize\ttfamily const char $\ast$ Sndfile\+Handle\+::get\+String (\begin{DoxyParamCaption}\item[{int}]{str\+\_\+type }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 310 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_a7f99c56f1af1f6d74c1312a05aaf1a12}\label{class_sndfile_handle_a7f99c56f1af1f6d74c1312a05aaf1a12}} 
+\index{SndfileHandle@{SndfileHandle}!operator bool@{operator bool}}
+\index{operator bool@{operator bool}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{operator bool()}{operator bool()}}
+{\footnotesize\ttfamily Sndfile\+Handle\+::operator bool (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 98 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_af7f77c3dbd655daed9648b702329ca86}\label{class_sndfile_handle_af7f77c3dbd655daed9648b702329ca86}} 
+\index{SndfileHandle@{SndfileHandle}!operator=@{operator=}}
+\index{operator=@{operator=}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sndfile_handle}{Sndfile\+Handle}} \& Sndfile\+Handle\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_sndfile_handle}{Sndfile\+Handle}} \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 271 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_a37b4778ae0a0e7125f68ea872cecc8e0}\label{class_sndfile_handle_a37b4778ae0a0e7125f68ea872cecc8e0}} 
+\index{SndfileHandle@{SndfileHandle}!operator==@{operator==}}
+\index{operator==@{operator==}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool Sndfile\+Handle\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_sndfile_handle}{Sndfile\+Handle}} \&}]{rhs }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 100 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_a605153c4c3e84557cd60eb3978fc8539}\label{class_sndfile_handle_a605153c4c3e84557cd60eb3978fc8539}} 
+\index{SndfileHandle@{SndfileHandle}!rawHandle@{rawHandle}}
+\index{rawHandle@{rawHandle}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{rawHandle()}{rawHandle()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{sndfile_8h_ac14209bc83d532b06a8cdf9ade6d544a}{S\+N\+D\+F\+I\+LE}} $\ast$ Sndfile\+Handle\+::raw\+Handle (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Take ownership of handle, if reference count is 1. 
+
+Definition at line 403 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_ae3125a94ea83be0193dead02b151d008}\label{class_sndfile_handle_ae3125a94ea83be0193dead02b151d008}} 
+\index{SndfileHandle@{SndfileHandle}!read@{read}}
+\index{read@{read}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{read()}{read()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} Sndfile\+Handle\+::read (\begin{DoxyParamCaption}\item[{short $\ast$}]{ptr,  }\item[{\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}}}]{items }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 331 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_af6d8fa499d36a9bd68301023800ac8b9}\label{class_sndfile_handle_af6d8fa499d36a9bd68301023800ac8b9}} 
+\index{SndfileHandle@{SndfileHandle}!read@{read}}
+\index{read@{read}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{read()}{read()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} Sndfile\+Handle\+::read (\begin{DoxyParamCaption}\item[{int $\ast$}]{ptr,  }\item[{\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}}}]{items }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 335 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_aa2ee9aaafe7baa6b7e5d26e9dd2a0321}\label{class_sndfile_handle_aa2ee9aaafe7baa6b7e5d26e9dd2a0321}} 
+\index{SndfileHandle@{SndfileHandle}!read@{read}}
+\index{read@{read}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{read()}{read()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} Sndfile\+Handle\+::read (\begin{DoxyParamCaption}\item[{float $\ast$}]{ptr,  }\item[{\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}}}]{items }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 339 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_a44892d06c66e34bfc5f1948ee58b43ac}\label{class_sndfile_handle_a44892d06c66e34bfc5f1948ee58b43ac}} 
+\index{SndfileHandle@{SndfileHandle}!read@{read}}
+\index{read@{read}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{read()}{read()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} Sndfile\+Handle\+::read (\begin{DoxyParamCaption}\item[{double $\ast$}]{ptr,  }\item[{\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}}}]{items }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 343 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_aea11dfe64ff49f514068969cd8f8ed38}\label{class_sndfile_handle_aea11dfe64ff49f514068969cd8f8ed38}} 
+\index{SndfileHandle@{SndfileHandle}!readf@{readf}}
+\index{readf@{readf}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{readf()}{readf()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} Sndfile\+Handle\+::readf (\begin{DoxyParamCaption}\item[{short $\ast$}]{ptr,  }\item[{\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}}}]{frames }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 363 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_a3484df57698b0fc6f8835c864e48c8e0}\label{class_sndfile_handle_a3484df57698b0fc6f8835c864e48c8e0}} 
+\index{SndfileHandle@{SndfileHandle}!readf@{readf}}
+\index{readf@{readf}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{readf()}{readf()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} Sndfile\+Handle\+::readf (\begin{DoxyParamCaption}\item[{int $\ast$}]{ptr,  }\item[{\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}}}]{frames }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 367 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_af8214c9c6501fb05bc64df83ba85fb6e}\label{class_sndfile_handle_af8214c9c6501fb05bc64df83ba85fb6e}} 
+\index{SndfileHandle@{SndfileHandle}!readf@{readf}}
+\index{readf@{readf}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{readf()}{readf()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} Sndfile\+Handle\+::readf (\begin{DoxyParamCaption}\item[{float $\ast$}]{ptr,  }\item[{\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}}}]{frames }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 371 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_a00da31b8ed6ac1da69330c27adb9297c}\label{class_sndfile_handle_a00da31b8ed6ac1da69330c27adb9297c}} 
+\index{SndfileHandle@{SndfileHandle}!readf@{readf}}
+\index{readf@{readf}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{readf()}{readf()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} Sndfile\+Handle\+::readf (\begin{DoxyParamCaption}\item[{double $\ast$}]{ptr,  }\item[{\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}}}]{frames }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 375 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_a5dfeda9653d5c9c70552fb67f60d52c4}\label{class_sndfile_handle_a5dfeda9653d5c9c70552fb67f60d52c4}} 
+\index{SndfileHandle@{SndfileHandle}!readRaw@{readRaw}}
+\index{readRaw@{readRaw}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{readRaw()}{readRaw()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} Sndfile\+Handle\+::read\+Raw (\begin{DoxyParamCaption}\item[{void $\ast$}]{ptr,  }\item[{\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}}}]{bytes }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 395 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_a6b56dc2dbe66af6b1fe44adf0f4f371a}\label{class_sndfile_handle_a6b56dc2dbe66af6b1fe44adf0f4f371a}} 
+\index{SndfileHandle@{SndfileHandle}!refCount@{refCount}}
+\index{refCount@{refCount}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{refCount()}{refCount()}}
+{\footnotesize\ttfamily int Sndfile\+Handle\+::ref\+Count (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 96 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_aa4db003e80513fff2f861cc17d459911}\label{class_sndfile_handle_aa4db003e80513fff2f861cc17d459911}} 
+\index{SndfileHandle@{SndfileHandle}!samplerate@{samplerate}}
+\index{samplerate@{samplerate}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{samplerate()}{samplerate()}}
+{\footnotesize\ttfamily int Sndfile\+Handle\+::samplerate (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 105 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_a0751c210cba5d0d757ce801381743ef3}\label{class_sndfile_handle_a0751c210cba5d0d757ce801381743ef3}} 
+\index{SndfileHandle@{SndfileHandle}!seek@{seek}}
+\index{seek@{seek}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{seek()}{seek()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} Sndfile\+Handle\+::seek (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}}}]{frames,  }\item[{int}]{whence }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 298 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_a6fa21cda95c6016c9f2f133d2e94da8b}\label{class_sndfile_handle_a6fa21cda95c6016c9f2f133d2e94da8b}} 
+\index{SndfileHandle@{SndfileHandle}!setString@{setString}}
+\index{setString@{setString}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{setString()}{setString()}}
+{\footnotesize\ttfamily int Sndfile\+Handle\+::set\+String (\begin{DoxyParamCaption}\item[{int}]{str\+\_\+type,  }\item[{const char $\ast$}]{str }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 306 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_a1405842e7e672b9789075bf8a4983a13}\label{class_sndfile_handle_a1405842e7e672b9789075bf8a4983a13}} 
+\index{SndfileHandle@{SndfileHandle}!strError@{strError}}
+\index{strError@{strError}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{strError()}{strError()}}
+{\footnotesize\ttfamily const char $\ast$ Sndfile\+Handle\+::str\+Error (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 290 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_a9461ef4669a8df24945e846fb28875b2}\label{class_sndfile_handle_a9461ef4669a8df24945e846fb28875b2}} 
+\index{SndfileHandle@{SndfileHandle}!takeOwnership@{takeOwnership}}
+\index{takeOwnership@{takeOwnership}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{takeOwnership()}{takeOwnership()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{sndfile_8h_ac14209bc83d532b06a8cdf9ade6d544a}{S\+N\+D\+F\+I\+LE}} $\ast$ Sndfile\+Handle\+::take\+Ownership (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 407 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_ae7aac54beecd7eb08d080f4e6cd171f4}\label{class_sndfile_handle_ae7aac54beecd7eb08d080f4e6cd171f4}} 
+\index{SndfileHandle@{SndfileHandle}!write@{write}}
+\index{write@{write}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{write()}{write()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} Sndfile\+Handle\+::write (\begin{DoxyParamCaption}\item[{const short $\ast$}]{ptr,  }\item[{\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}}}]{items }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 347 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_a6c787b63a36e8c432c38aad125444239}\label{class_sndfile_handle_a6c787b63a36e8c432c38aad125444239}} 
+\index{SndfileHandle@{SndfileHandle}!write@{write}}
+\index{write@{write}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{write()}{write()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} Sndfile\+Handle\+::write (\begin{DoxyParamCaption}\item[{const int $\ast$}]{ptr,  }\item[{\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}}}]{items }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 351 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_a25f654f209d8ef92c988be402384dbff}\label{class_sndfile_handle_a25f654f209d8ef92c988be402384dbff}} 
+\index{SndfileHandle@{SndfileHandle}!write@{write}}
+\index{write@{write}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{write()}{write()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} Sndfile\+Handle\+::write (\begin{DoxyParamCaption}\item[{const float $\ast$}]{ptr,  }\item[{\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}}}]{items }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 355 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_aa659622dcc3b1c838c8395b008e80416}\label{class_sndfile_handle_aa659622dcc3b1c838c8395b008e80416}} 
+\index{SndfileHandle@{SndfileHandle}!write@{write}}
+\index{write@{write}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{write()}{write()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} Sndfile\+Handle\+::write (\begin{DoxyParamCaption}\item[{const double $\ast$}]{ptr,  }\item[{\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}}}]{items }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 359 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_aaeef77f4a93210244e21f913b3c378b4}\label{class_sndfile_handle_aaeef77f4a93210244e21f913b3c378b4}} 
+\index{SndfileHandle@{SndfileHandle}!writef@{writef}}
+\index{writef@{writef}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{writef()}{writef()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} Sndfile\+Handle\+::writef (\begin{DoxyParamCaption}\item[{const short $\ast$}]{ptr,  }\item[{\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}}}]{frames }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 379 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_a841acc6961dcca46bbb88aee97ebaeb2}\label{class_sndfile_handle_a841acc6961dcca46bbb88aee97ebaeb2}} 
+\index{SndfileHandle@{SndfileHandle}!writef@{writef}}
+\index{writef@{writef}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{writef()}{writef()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} Sndfile\+Handle\+::writef (\begin{DoxyParamCaption}\item[{const int $\ast$}]{ptr,  }\item[{\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}}}]{frames }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 383 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_a8f862bf6d6d48246fa5cbb46464bf4c2}\label{class_sndfile_handle_a8f862bf6d6d48246fa5cbb46464bf4c2}} 
+\index{SndfileHandle@{SndfileHandle}!writef@{writef}}
+\index{writef@{writef}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{writef()}{writef()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} Sndfile\+Handle\+::writef (\begin{DoxyParamCaption}\item[{const float $\ast$}]{ptr,  }\item[{\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}}}]{frames }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 387 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_a96ff069df0294554fb906a8b04bad662}\label{class_sndfile_handle_a96ff069df0294554fb906a8b04bad662}} 
+\index{SndfileHandle@{SndfileHandle}!writef@{writef}}
+\index{writef@{writef}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{writef()}{writef()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} Sndfile\+Handle\+::writef (\begin{DoxyParamCaption}\item[{const double $\ast$}]{ptr,  }\item[{\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}}}]{frames }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 391 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_a2557a434e75581b864635088f9de4ee5}\label{class_sndfile_handle_a2557a434e75581b864635088f9de4ee5}} 
+\index{SndfileHandle@{SndfileHandle}!writeRaw@{writeRaw}}
+\index{writeRaw@{writeRaw}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{writeRaw()}{writeRaw()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}} Sndfile\+Handle\+::write\+Raw (\begin{DoxyParamCaption}\item[{const void $\ast$}]{ptr,  }\item[{\mbox{\hyperlink{sndfile_8h_af2b12fded74bc949f1f1f392a2af4892}{sf\+\_\+count\+\_\+t}}}]{bytes }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Raw access to the handle. \mbox{\hyperlink{class_sndfile_handle}{Sndfile\+Handle}} keeps ownership. 
+
+Definition at line 399 of file sndfile.\+hh.
+
+\mbox{\Hypertarget{class_sndfile_handle_a7d7e6ec33d07dfae354c2909fafcdbb2}\label{class_sndfile_handle_a7d7e6ec33d07dfae354c2909fafcdbb2}} 
+\index{SndfileHandle@{SndfileHandle}!writeSync@{writeSync}}
+\index{writeSync@{writeSync}!SndfileHandle@{SndfileHandle}}
+\subsubsection{\texorpdfstring{writeSync()}{writeSync()}}
+{\footnotesize\ttfamily void Sndfile\+Handle\+::write\+Sync (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 302 of file sndfile.\+hh.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+server/third\+\_\+party/\mbox{\hyperlink{sndfile_8hh}{sndfile.\+hh}}\end{DoxyCompactItemize}

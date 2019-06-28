@@ -1,0 +1,123 @@
+\hypertarget{networking_8c}{}\section{server/networking/networking.c File Reference}
+\label{networking_8c}\index{server/networking/networking.c@{server/networking/networking.c}}
+{\ttfamily \#include \char`\"{}./networking\+\_\+basic.\+c\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{networking_8c_a6d93d69f354715999aba45f5e654fa76}{L\+E\+N\+\_\+\+O\+F\+\_\+\+A\+P\+P\+E\+N\+D\+IX}}~7
+\item 
+\#define \mbox{\hyperlink{networking_8c_a624fd5af921a5266e2d0304a645298ba}{B\+U\+FF}}~512
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{networking_8c_ae1a4b2c7b1bd279c14824c7c9b114592}{receive\+\_\+data}} (int socket)
+\item 
+char $\ast$ \mbox{\hyperlink{networking_8c_a434b35d077f98d5b72b5e31b422a7a2d}{retrieve\+\_\+message\+\_\+dynamic}} (int socket)
+\item 
+int \mbox{\hyperlink{networking_8c_a36dce388509fd23a8a2a9dabd414e17c}{create\+\_\+connection}} (int socket, const char $\ast$ip, int port, \mbox{\hyperlink{networking__basic_8c_a5d5f7501cd2439f854c1e16deea9663c}{S\+O\+C\+K\+E\+T\+\_\+\+T\+Y\+PE}} type)
+\item 
+int \mbox{\hyperlink{networking_8c_a4038927d5dd92d5a9bcc41de7dd7eead}{send\+\_\+message\+\_\+int}} (int socket, int message, int message\+\_\+size)
+\item 
+int \mbox{\hyperlink{networking_8c_ac083917ceab38ad6e5c2485e6d3bbad6}{send\+\_\+message\+\_\+char}} (int socket, char $\ast$message, int message\+\_\+size)
+\item 
+int \mbox{\hyperlink{networking_8c_a9e8ea94aa7f04a9e0721aa0143c0bbe9}{send\+\_\+frames}} (int socket, int $\ast$frames, int items\+\_\+to\+\_\+send, int size\+\_\+of\+\_\+frame, int frames\+\_\+in\+\_\+message)
+\item 
+int \mbox{\hyperlink{networking_8c_a023aa88db9f592c9c5f98b0d05a32509}{disconnect}} (int socket)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{networking_8c_a624fd5af921a5266e2d0304a645298ba}\label{networking_8c_a624fd5af921a5266e2d0304a645298ba}} 
+\index{networking.c@{networking.c}!BUFF@{BUFF}}
+\index{BUFF@{BUFF}!networking.c@{networking.c}}
+\subsubsection{\texorpdfstring{BUFF}{BUFF}}
+{\footnotesize\ttfamily \#define B\+U\+FF~512}
+
+
+
+Definition at line 4 of file networking.\+c.
+
+\mbox{\Hypertarget{networking_8c_a6d93d69f354715999aba45f5e654fa76}\label{networking_8c_a6d93d69f354715999aba45f5e654fa76}} 
+\index{networking.c@{networking.c}!LEN\_OF\_APPENDIX@{LEN\_OF\_APPENDIX}}
+\index{LEN\_OF\_APPENDIX@{LEN\_OF\_APPENDIX}!networking.c@{networking.c}}
+\subsubsection{\texorpdfstring{LEN\_OF\_APPENDIX}{LEN\_OF\_APPENDIX}}
+{\footnotesize\ttfamily \#define L\+E\+N\+\_\+\+O\+F\+\_\+\+A\+P\+P\+E\+N\+D\+IX~7}
+
+
+
+Definition at line 3 of file networking.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{networking_8c_a36dce388509fd23a8a2a9dabd414e17c}\label{networking_8c_a36dce388509fd23a8a2a9dabd414e17c}} 
+\index{networking.c@{networking.c}!create\_connection@{create\_connection}}
+\index{create\_connection@{create\_connection}!networking.c@{networking.c}}
+\subsubsection{\texorpdfstring{create\_connection()}{create\_connection()}}
+{\footnotesize\ttfamily int create\+\_\+connection (\begin{DoxyParamCaption}\item[{int}]{socket,  }\item[{const char $\ast$}]{ip,  }\item[{int}]{port,  }\item[{\mbox{\hyperlink{networking__basic_8c_a5d5f7501cd2439f854c1e16deea9663c}{S\+O\+C\+K\+E\+T\+\_\+\+T\+Y\+PE}}}]{type }\end{DoxyParamCaption})}
+
+Connects to the specified socket 
+
+Definition at line 35 of file networking.\+c.
+
+\mbox{\Hypertarget{networking_8c_a023aa88db9f592c9c5f98b0d05a32509}\label{networking_8c_a023aa88db9f592c9c5f98b0d05a32509}} 
+\index{networking.c@{networking.c}!disconnect@{disconnect}}
+\index{disconnect@{disconnect}!networking.c@{networking.c}}
+\subsubsection{\texorpdfstring{disconnect()}{disconnect()}}
+{\footnotesize\ttfamily int disconnect (\begin{DoxyParamCaption}\item[{int}]{socket }\end{DoxyParamCaption})}
+
+
+
+Definition at line 147 of file networking.\+c.
+
+\mbox{\Hypertarget{networking_8c_ae1a4b2c7b1bd279c14824c7c9b114592}\label{networking_8c_ae1a4b2c7b1bd279c14824c7c9b114592}} 
+\index{networking.c@{networking.c}!receive\_data@{receive\_data}}
+\index{receive\_data@{receive\_data}!networking.c@{networking.c}}
+\subsubsection{\texorpdfstring{receive\_data()}{receive\_data()}}
+{\footnotesize\ttfamily void receive\+\_\+data (\begin{DoxyParamCaption}\item[{int}]{socket }\end{DoxyParamCaption})}
+
+
+
+Definition at line 6 of file networking.\+c.
+
+\mbox{\Hypertarget{networking_8c_a434b35d077f98d5b72b5e31b422a7a2d}\label{networking_8c_a434b35d077f98d5b72b5e31b422a7a2d}} 
+\index{networking.c@{networking.c}!retrieve\_message\_dynamic@{retrieve\_message\_dynamic}}
+\index{retrieve\_message\_dynamic@{retrieve\_message\_dynamic}!networking.c@{networking.c}}
+\subsubsection{\texorpdfstring{retrieve\_message\_dynamic()}{retrieve\_message\_dynamic()}}
+{\footnotesize\ttfamily char$\ast$ retrieve\+\_\+message\+\_\+dynamic (\begin{DoxyParamCaption}\item[{int}]{socket }\end{DoxyParamCaption})}
+
+Retrieves a message from specified socket and returns a char pointer to dynamically allocated memory storing the message. 
+
+Definition at line 19 of file networking.\+c.
+
+\mbox{\Hypertarget{networking_8c_a9e8ea94aa7f04a9e0721aa0143c0bbe9}\label{networking_8c_a9e8ea94aa7f04a9e0721aa0143c0bbe9}} 
+\index{networking.c@{networking.c}!send\_frames@{send\_frames}}
+\index{send\_frames@{send\_frames}!networking.c@{networking.c}}
+\subsubsection{\texorpdfstring{send\_frames()}{send\_frames()}}
+{\footnotesize\ttfamily int send\+\_\+frames (\begin{DoxyParamCaption}\item[{int}]{socket,  }\item[{int $\ast$}]{frames,  }\item[{int}]{items\+\_\+to\+\_\+send,  }\item[{int}]{size\+\_\+of\+\_\+frame,  }\item[{int}]{frames\+\_\+in\+\_\+message }\end{DoxyParamCaption})}
+
+Send the specified audio frames to the provided socket 
+
+Definition at line 119 of file networking.\+c.
+
+\mbox{\Hypertarget{networking_8c_ac083917ceab38ad6e5c2485e6d3bbad6}\label{networking_8c_ac083917ceab38ad6e5c2485e6d3bbad6}} 
+\index{networking.c@{networking.c}!send\_message\_char@{send\_message\_char}}
+\index{send\_message\_char@{send\_message\_char}!networking.c@{networking.c}}
+\subsubsection{\texorpdfstring{send\_message\_char()}{send\_message\_char()}}
+{\footnotesize\ttfamily int send\+\_\+message\+\_\+char (\begin{DoxyParamCaption}\item[{int}]{socket,  }\item[{char $\ast$}]{message,  }\item[{int}]{message\+\_\+size }\end{DoxyParamCaption})}
+
+Sends a text message to provided socket 
+
+Definition at line 88 of file networking.\+c.
+
+\mbox{\Hypertarget{networking_8c_a4038927d5dd92d5a9bcc41de7dd7eead}\label{networking_8c_a4038927d5dd92d5a9bcc41de7dd7eead}} 
+\index{networking.c@{networking.c}!send\_message\_int@{send\_message\_int}}
+\index{send\_message\_int@{send\_message\_int}!networking.c@{networking.c}}
+\subsubsection{\texorpdfstring{send\_message\_int()}{send\_message\_int()}}
+{\footnotesize\ttfamily int send\+\_\+message\+\_\+int (\begin{DoxyParamCaption}\item[{int}]{socket,  }\item[{int}]{message,  }\item[{int}]{message\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Definition at line 69 of file networking.\+c.
+

@@ -1,0 +1,100 @@
+\hypertarget{networking__basic_8c}{}\section{server/networking/networking\+\_\+basic.c File Reference}
+\label{networking__basic_8c}\index{server/networking/networking\_basic.c@{server/networking/networking\_basic.c}}
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$syslog.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$signal.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{networking__basic_8c_a5d5f7501cd2439f854c1e16deea9663c}{S\+O\+C\+K\+E\+T\+\_\+\+T\+Y\+PE}} \{ \mbox{\hyperlink{networking__basic_8c_a5d5f7501cd2439f854c1e16deea9663caa040cd7feeb588104634cdadf35abf1c}{T\+CP}} =S\+O\+C\+K\+\_\+\+S\+T\+R\+E\+AM, 
+\mbox{\hyperlink{networking__basic_8c_a5d5f7501cd2439f854c1e16deea9663cadb542475cf9d0636e4225e216cee9ae6}{U\+DP}} =S\+O\+C\+K\+\_\+\+D\+G\+R\+AM
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{networking__basic_8c_a70f37ec7693a596705b372941d1bb354}{create\+\_\+socket}} (\mbox{\hyperlink{networking__basic_8c_a5d5f7501cd2439f854c1e16deea9663c}{S\+O\+C\+K\+E\+T\+\_\+\+T\+Y\+PE}} type)
+\item 
+int \mbox{\hyperlink{networking__basic_8c_a699e4fe396e27512ed3e715c9237a46e}{bind\+\_\+port}} (int socket, int port)
+\item 
+int \mbox{\hyperlink{networking__basic_8c_a09d4722144e1b3cf0c63f719d465b0f5}{accept\+\_\+connection}} (int socket)
+\item 
+int \mbox{\hyperlink{networking__basic_8c_afccb3b5e0f1b21b7b5ba26de30df0ceb}{listen\+\_\+to\+\_\+socket}} (int socket, int log, \mbox{\hyperlink{networking__basic_8c_a5d5f7501cd2439f854c1e16deea9663c}{S\+O\+C\+K\+E\+T\+\_\+\+T\+Y\+PE}} type)
+\end{DoxyCompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{networking__basic_8c_a5d5f7501cd2439f854c1e16deea9663c}\label{networking__basic_8c_a5d5f7501cd2439f854c1e16deea9663c}} 
+\index{networking\_basic.c@{networking\_basic.c}!SOCKET\_TYPE@{SOCKET\_TYPE}}
+\index{SOCKET\_TYPE@{SOCKET\_TYPE}!networking\_basic.c@{networking\_basic.c}}
+\subsubsection{\texorpdfstring{SOCKET\_TYPE}{SOCKET\_TYPE}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{networking__basic_8c_a5d5f7501cd2439f854c1e16deea9663c}{S\+O\+C\+K\+E\+T\+\_\+\+T\+Y\+PE}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TCP@{TCP}!networking\_basic.c@{networking\_basic.c}}\index{networking\_basic.c@{networking\_basic.c}!TCP@{TCP}}}\mbox{\Hypertarget{networking__basic_8c_a5d5f7501cd2439f854c1e16deea9663caa040cd7feeb588104634cdadf35abf1c}\label{networking__basic_8c_a5d5f7501cd2439f854c1e16deea9663caa040cd7feeb588104634cdadf35abf1c}} 
+T\+CP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UDP@{UDP}!networking\_basic.c@{networking\_basic.c}}\index{networking\_basic.c@{networking\_basic.c}!UDP@{UDP}}}\mbox{\Hypertarget{networking__basic_8c_a5d5f7501cd2439f854c1e16deea9663cadb542475cf9d0636e4225e216cee9ae6}\label{networking__basic_8c_a5d5f7501cd2439f854c1e16deea9663cadb542475cf9d0636e4225e216cee9ae6}} 
+U\+DP&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 25 of file networking\+\_\+basic.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{networking__basic_8c_a09d4722144e1b3cf0c63f719d465b0f5}\label{networking__basic_8c_a09d4722144e1b3cf0c63f719d465b0f5}} 
+\index{networking\_basic.c@{networking\_basic.c}!accept\_connection@{accept\_connection}}
+\index{accept\_connection@{accept\_connection}!networking\_basic.c@{networking\_basic.c}}
+\subsubsection{\texorpdfstring{accept\_connection()}{accept\_connection()}}
+{\footnotesize\ttfamily int accept\+\_\+connection (\begin{DoxyParamCaption}\item[{int}]{socket }\end{DoxyParamCaption})}
+
+Wait for and accept an incoming connection to the specified socket. 
+
+Definition at line 71 of file networking\+\_\+basic.\+c.
+
+\mbox{\Hypertarget{networking__basic_8c_a699e4fe396e27512ed3e715c9237a46e}\label{networking__basic_8c_a699e4fe396e27512ed3e715c9237a46e}} 
+\index{networking\_basic.c@{networking\_basic.c}!bind\_port@{bind\_port}}
+\index{bind\_port@{bind\_port}!networking\_basic.c@{networking\_basic.c}}
+\subsubsection{\texorpdfstring{bind\_port()}{bind\_port()}}
+{\footnotesize\ttfamily int bind\+\_\+port (\begin{DoxyParamCaption}\item[{int}]{socket,  }\item[{int}]{port }\end{DoxyParamCaption})}
+
+Binds provided socket to specified port 
+
+Definition at line 46 of file networking\+\_\+basic.\+c.
+
+\mbox{\Hypertarget{networking__basic_8c_a70f37ec7693a596705b372941d1bb354}\label{networking__basic_8c_a70f37ec7693a596705b372941d1bb354}} 
+\index{networking\_basic.c@{networking\_basic.c}!create\_socket@{create\_socket}}
+\index{create\_socket@{create\_socket}!networking\_basic.c@{networking\_basic.c}}
+\subsubsection{\texorpdfstring{create\_socket()}{create\_socket()}}
+{\footnotesize\ttfamily int create\+\_\+socket (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{networking__basic_8c_a5d5f7501cd2439f854c1e16deea9663c}{S\+O\+C\+K\+E\+T\+\_\+\+T\+Y\+PE}}}]{type }\end{DoxyParamCaption})}
+
+Creates a socket of specified type 
+
+Definition at line 30 of file networking\+\_\+basic.\+c.
+
+\mbox{\Hypertarget{networking__basic_8c_afccb3b5e0f1b21b7b5ba26de30df0ceb}\label{networking__basic_8c_afccb3b5e0f1b21b7b5ba26de30df0ceb}} 
+\index{networking\_basic.c@{networking\_basic.c}!listen\_to\_socket@{listen\_to\_socket}}
+\index{listen\_to\_socket@{listen\_to\_socket}!networking\_basic.c@{networking\_basic.c}}
+\subsubsection{\texorpdfstring{listen\_to\_socket()}{listen\_to\_socket()}}
+{\footnotesize\ttfamily int listen\+\_\+to\+\_\+socket (\begin{DoxyParamCaption}\item[{int}]{socket,  }\item[{int}]{log,  }\item[{\mbox{\hyperlink{networking__basic_8c_a5d5f7501cd2439f854c1e16deea9663c}{S\+O\+C\+K\+E\+T\+\_\+\+T\+Y\+PE}}}]{type }\end{DoxyParamCaption})}
+
+Starts listening on the specified socket 
+
+Definition at line 101 of file networking\+\_\+basic.\+c.
+

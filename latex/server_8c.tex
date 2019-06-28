@@ -1,0 +1,223 @@
+\hypertarget{server_8c}{}\section{server/server/server.c File Reference}
+\label{server_8c}\index{server/server/server.c@{server/server/server.c}}
+{\ttfamily \#include \char`\"{}communication.\+c\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../util/util.\+c\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../third\+\_\+party/sndfile.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}math.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}limits.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{server_8c_aafc57d44738df70f43ac87ed969eed47}{Q\+U\+E\+UE}}~512
+\item 
+\#define \mbox{\hyperlink{server_8c_a614217d263be1fb1a5f76e2ff7be19a2}{P\+O\+RT}}~8989
+\item 
+\#define \mbox{\hyperlink{server_8c_a3e3c95f6944aec14d7a7c95a4d03ea71}{F\+R\+A\+M\+E\+S\+\_\+\+I\+N\+\_\+\+M\+E\+S\+S\+A\+GE}}~80
+\item 
+\#define \mbox{\hyperlink{server_8c_af721a85ccdaa386413c85763615bcd3c}{P\+A\+T\+H\+\_\+\+T\+O\+\_\+\+S\+O\+N\+GS}}~\char`\"{}./audio\+\_\+library\char`\"{}
+\item 
+\#define \mbox{\hyperlink{server_8c_a4362ac890f9e50aac5882590deedde41}{F\+A\+T\+AL}}~\char`\"{}F\+A\+T\+AL\char`\"{}
+\item 
+\#define \mbox{\hyperlink{server_8c_a72aed21dd91ceea26ffe09ce4391933a}{S\+I\+Z\+E\+\_\+\+O\+F\+\_\+\+F\+A\+T\+AL}}~6
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{server_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>char $\ast$ \mbox{\hyperlink{server_8c_aa556d4a8b9f30dd0bac1044aa6118f74}{SONG\_LIST}}\\
+\>char $\ast$ \mbox{\hyperlink{server_8c_af80d944103862a81bcb650c56b699da4}{SET\_SONG}}\\
+\>char $\ast$ \mbox{\hyperlink{server_8c_a3a929e5b986f08952dad1af65c20c5f7}{SAMPLING\_RATE}}\\
+\>char $\ast$ \mbox{\hyperlink{server_8c_ad6cd80c3c206f6021280e7b99a2db67f}{CHANNELS}}\\
+\>char $\ast$ \mbox{\hyperlink{server_8c_a3a67a421e2279ed8c2bdc29e9e825fd2}{SONG\_LENGTH}}\\
+\>char $\ast$ \mbox{\hyperlink{server_8c_aebb6be6e09881aad81956b8507a7d535}{NUMBER\_OF\_FRAMES}}\\
+\>char $\ast$ \mbox{\hyperlink{server_8c_a130e6d2ed03c8b9568206d6a17f4107f}{BUFFER\_SIZE}}\\
+\>char $\ast$ \mbox{\hyperlink{server_8c_a95499dc3bb831859865f9ce70aa6e391}{STREAM\_SONG}}\\
+\} \mbox{\hyperlink{server_8c_ad3860f18ca9e4297fcc543a5f0dfd9cf}{Commands}}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{server_8c_a4362ac890f9e50aac5882590deedde41}\label{server_8c_a4362ac890f9e50aac5882590deedde41}} 
+\index{server.c@{server.c}!FATAL@{FATAL}}
+\index{FATAL@{FATAL}!server.c@{server.c}}
+\subsubsection{\texorpdfstring{FATAL}{FATAL}}
+{\footnotesize\ttfamily \#define F\+A\+T\+AL~\char`\"{}F\+A\+T\+AL\char`\"{}}
+
+
+
+Definition at line 15 of file server.\+c.
+
+\mbox{\Hypertarget{server_8c_a3e3c95f6944aec14d7a7c95a4d03ea71}\label{server_8c_a3e3c95f6944aec14d7a7c95a4d03ea71}} 
+\index{server.c@{server.c}!FRAMES\_IN\_MESSAGE@{FRAMES\_IN\_MESSAGE}}
+\index{FRAMES\_IN\_MESSAGE@{FRAMES\_IN\_MESSAGE}!server.c@{server.c}}
+\subsubsection{\texorpdfstring{FRAMES\_IN\_MESSAGE}{FRAMES\_IN\_MESSAGE}}
+{\footnotesize\ttfamily \#define F\+R\+A\+M\+E\+S\+\_\+\+I\+N\+\_\+\+M\+E\+S\+S\+A\+GE~80}
+
+
+
+Definition at line 12 of file server.\+c.
+
+\mbox{\Hypertarget{server_8c_af721a85ccdaa386413c85763615bcd3c}\label{server_8c_af721a85ccdaa386413c85763615bcd3c}} 
+\index{server.c@{server.c}!PATH\_TO\_SONGS@{PATH\_TO\_SONGS}}
+\index{PATH\_TO\_SONGS@{PATH\_TO\_SONGS}!server.c@{server.c}}
+\subsubsection{\texorpdfstring{PATH\_TO\_SONGS}{PATH\_TO\_SONGS}}
+{\footnotesize\ttfamily \#define P\+A\+T\+H\+\_\+\+T\+O\+\_\+\+S\+O\+N\+GS~\char`\"{}./audio\+\_\+library\char`\"{}}
+
+
+
+Definition at line 13 of file server.\+c.
+
+\mbox{\Hypertarget{server_8c_a614217d263be1fb1a5f76e2ff7be19a2}\label{server_8c_a614217d263be1fb1a5f76e2ff7be19a2}} 
+\index{server.c@{server.c}!PORT@{PORT}}
+\index{PORT@{PORT}!server.c@{server.c}}
+\subsubsection{\texorpdfstring{PORT}{PORT}}
+{\footnotesize\ttfamily \#define P\+O\+RT~8989}
+
+
+
+Definition at line 11 of file server.\+c.
+
+\mbox{\Hypertarget{server_8c_aafc57d44738df70f43ac87ed969eed47}\label{server_8c_aafc57d44738df70f43ac87ed969eed47}} 
+\index{server.c@{server.c}!QUEUE@{QUEUE}}
+\index{QUEUE@{QUEUE}!server.c@{server.c}}
+\subsubsection{\texorpdfstring{QUEUE}{QUEUE}}
+{\footnotesize\ttfamily \#define Q\+U\+E\+UE~512}
+
+
+
+Definition at line 10 of file server.\+c.
+
+\mbox{\Hypertarget{server_8c_a72aed21dd91ceea26ffe09ce4391933a}\label{server_8c_a72aed21dd91ceea26ffe09ce4391933a}} 
+\index{server.c@{server.c}!SIZE\_OF\_FATAL@{SIZE\_OF\_FATAL}}
+\index{SIZE\_OF\_FATAL@{SIZE\_OF\_FATAL}!server.c@{server.c}}
+\subsubsection{\texorpdfstring{SIZE\_OF\_FATAL}{SIZE\_OF\_FATAL}}
+{\footnotesize\ttfamily \#define S\+I\+Z\+E\+\_\+\+O\+F\+\_\+\+F\+A\+T\+AL~6}
+
+
+
+Definition at line 16 of file server.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{server_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{server_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{server.c@{server.c}!main@{main}}
+\index{main@{main}!server.c@{server.c}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Definition at line 47 of file server.\+c.
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{server_8c_a130e6d2ed03c8b9568206d6a17f4107f}\label{server_8c_a130e6d2ed03c8b9568206d6a17f4107f}} 
+\index{server.c@{server.c}!BUFFER\_SIZE@{BUFFER\_SIZE}}
+\index{BUFFER\_SIZE@{BUFFER\_SIZE}!server.c@{server.c}}
+\subsubsection{\texorpdfstring{BUFFER\_SIZE}{BUFFER\_SIZE}}
+{\footnotesize\ttfamily char$\ast$ B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}
+
+
+
+Definition at line 29 of file server.\+c.
+
+\mbox{\Hypertarget{server_8c_ad6cd80c3c206f6021280e7b99a2db67f}\label{server_8c_ad6cd80c3c206f6021280e7b99a2db67f}} 
+\index{server.c@{server.c}!CHANNELS@{CHANNELS}}
+\index{CHANNELS@{CHANNELS}!server.c@{server.c}}
+\subsubsection{\texorpdfstring{CHANNELS}{CHANNELS}}
+{\footnotesize\ttfamily char$\ast$ C\+H\+A\+N\+N\+E\+LS}
+
+
+
+Definition at line 26 of file server.\+c.
+
+\mbox{\Hypertarget{server_8c_ad3860f18ca9e4297fcc543a5f0dfd9cf}\label{server_8c_ad3860f18ca9e4297fcc543a5f0dfd9cf}} 
+\index{server.c@{server.c}!Commands@{Commands}}
+\index{Commands@{Commands}!server.c@{server.c}}
+\subsubsection{\texorpdfstring{Commands}{Commands}}
+{\footnotesize\ttfamily struct \{ ... \}   Commands}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{\textcolor{stringliteral}{"GIVE\_SONG\_LIST"}, }
+\DoxyCodeLine{\textcolor{stringliteral}{"SET\_SONG\_"}, }
+\DoxyCodeLine{\textcolor{stringliteral}{"GIVE\_SAMPLING\_RATE"},}
+\DoxyCodeLine{\textcolor{stringliteral}{"GIVE\_CHANNELS"},}
+\DoxyCodeLine{\textcolor{stringliteral}{"GIVE\_SONG\_LENGTH"},}
+\DoxyCodeLine{\textcolor{stringliteral}{"GIVE\_NUMBER\_OF\_FRAMES"}, }
+\DoxyCodeLine{\textcolor{stringliteral}{"GIVE\_BUFFER\_SIZE"}, }
+\DoxyCodeLine{\textcolor{stringliteral}{"GIVE\_STREAM\_SONG"}\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{server_8c_aebb6be6e09881aad81956b8507a7d535}\label{server_8c_aebb6be6e09881aad81956b8507a7d535}} 
+\index{server.c@{server.c}!NUMBER\_OF\_FRAMES@{NUMBER\_OF\_FRAMES}}
+\index{NUMBER\_OF\_FRAMES@{NUMBER\_OF\_FRAMES}!server.c@{server.c}}
+\subsubsection{\texorpdfstring{NUMBER\_OF\_FRAMES}{NUMBER\_OF\_FRAMES}}
+{\footnotesize\ttfamily char$\ast$ N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+F\+R\+A\+M\+ES}
+
+
+
+Definition at line 28 of file server.\+c.
+
+\mbox{\Hypertarget{server_8c_a3a929e5b986f08952dad1af65c20c5f7}\label{server_8c_a3a929e5b986f08952dad1af65c20c5f7}} 
+\index{server.c@{server.c}!SAMPLING\_RATE@{SAMPLING\_RATE}}
+\index{SAMPLING\_RATE@{SAMPLING\_RATE}!server.c@{server.c}}
+\subsubsection{\texorpdfstring{SAMPLING\_RATE}{SAMPLING\_RATE}}
+{\footnotesize\ttfamily char$\ast$ S\+A\+M\+P\+L\+I\+N\+G\+\_\+\+R\+A\+TE}
+
+
+
+Definition at line 25 of file server.\+c.
+
+\mbox{\Hypertarget{server_8c_af80d944103862a81bcb650c56b699da4}\label{server_8c_af80d944103862a81bcb650c56b699da4}} 
+\index{server.c@{server.c}!SET\_SONG@{SET\_SONG}}
+\index{SET\_SONG@{SET\_SONG}!server.c@{server.c}}
+\subsubsection{\texorpdfstring{SET\_SONG}{SET\_SONG}}
+{\footnotesize\ttfamily char$\ast$ S\+E\+T\+\_\+\+S\+O\+NG}
+
+
+
+Definition at line 24 of file server.\+c.
+
+\mbox{\Hypertarget{server_8c_a3a67a421e2279ed8c2bdc29e9e825fd2}\label{server_8c_a3a67a421e2279ed8c2bdc29e9e825fd2}} 
+\index{server.c@{server.c}!SONG\_LENGTH@{SONG\_LENGTH}}
+\index{SONG\_LENGTH@{SONG\_LENGTH}!server.c@{server.c}}
+\subsubsection{\texorpdfstring{SONG\_LENGTH}{SONG\_LENGTH}}
+{\footnotesize\ttfamily char$\ast$ S\+O\+N\+G\+\_\+\+L\+E\+N\+G\+TH}
+
+
+
+Definition at line 27 of file server.\+c.
+
+\mbox{\Hypertarget{server_8c_aa556d4a8b9f30dd0bac1044aa6118f74}\label{server_8c_aa556d4a8b9f30dd0bac1044aa6118f74}} 
+\index{server.c@{server.c}!SONG\_LIST@{SONG\_LIST}}
+\index{SONG\_LIST@{SONG\_LIST}!server.c@{server.c}}
+\subsubsection{\texorpdfstring{SONG\_LIST}{SONG\_LIST}}
+{\footnotesize\ttfamily char$\ast$ S\+O\+N\+G\+\_\+\+L\+I\+ST}
+
+
+
+Definition at line 23 of file server.\+c.
+
+\mbox{\Hypertarget{server_8c_a95499dc3bb831859865f9ce70aa6e391}\label{server_8c_a95499dc3bb831859865f9ce70aa6e391}} 
+\index{server.c@{server.c}!STREAM\_SONG@{STREAM\_SONG}}
+\index{STREAM\_SONG@{STREAM\_SONG}!server.c@{server.c}}
+\subsubsection{\texorpdfstring{STREAM\_SONG}{STREAM\_SONG}}
+{\footnotesize\ttfamily char$\ast$ S\+T\+R\+E\+A\+M\+\_\+\+S\+O\+NG}
+
+
+
+Definition at line 30 of file server.\+c.
+

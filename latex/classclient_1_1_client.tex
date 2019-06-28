@@ -1,0 +1,329 @@
+\hypertarget{classclient_1_1_client}{}\section{client.\+Client Class Reference}
+\label{classclient_1_1_client}\index{client.Client@{client.Client}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classclient_1_1_client_a69d3065fc7ea0880083203666659cd3d}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classclient_1_1_client_a2c7ab020d8f44b7a1dc077933e479cfc}{socket}})
+\item 
+def \mbox{\hyperlink{classclient_1_1_client_a3750b6fec748f30f7f743fd1ce6959ec}{get\+\_\+songs}} (self)
+\item 
+def \mbox{\hyperlink{classclient_1_1_client_a3cd7973d42ff3ffa6fe61a078cd4ebdd}{choose\+\_\+song}} (self)
+\item 
+def \mbox{\hyperlink{classclient_1_1_client_a1ea688c381f714976f489873002bac8c}{get\+\_\+sampling}} (self)
+\item 
+def \mbox{\hyperlink{classclient_1_1_client_aa20f7f8ab952191d709158a5bc5e33cb}{get\+\_\+data\+\_\+message\+\_\+size}} (self)
+\item 
+def \mbox{\hyperlink{classclient_1_1_client_a1be4e39c0bb457fbdd4b01001c1fd2e0}{get\+\_\+channels}} (self)
+\item 
+def \mbox{\hyperlink{classclient_1_1_client_a41a5b2936e0d2d529bbe83b3ee3c2a5f}{get\+\_\+song\+\_\+length}} (self)
+\item 
+def \mbox{\hyperlink{classclient_1_1_client_aa136a25c0d00452c3ec1d229285f2e34}{retrieve\+\_\+audio\+\_\+data}} (self)
+\item 
+def \mbox{\hyperlink{classclient_1_1_client_a3b9a4e393333a884eae6783f272e6d64}{initialize\+\_\+audio\+\_\+stream}} (self)
+\item 
+def \mbox{\hyperlink{classclient_1_1_client_abbcdbabd70d9d67a2378f3412ae8f5db}{play\+\_\+streamed\+\_\+data}} (self, audio\+\_\+frame)
+\item 
+def \mbox{\hyperlink{classclient_1_1_client_a1ad22cceab7abf799d72603c012e4bcd}{stop\+\_\+audio\+\_\+stream}} (self)
+\item 
+def \mbox{\hyperlink{classclient_1_1_client_af2db73fbc5f326a580fd7996af13c698}{handle\+\_\+input}} (self)
+\item 
+def \mbox{\hyperlink{classclient_1_1_client_ad422023bb1c71a266d1065cf270902e4}{play\+\_\+audio}} (self)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classclient_1_1_client_a2c7ab020d8f44b7a1dc077933e479cfc}{socket}}
+\item 
+\mbox{\hyperlink{classclient_1_1_client_a4cd9cd6ca5116719e5740d8c613aa6fd}{data}}
+\item 
+\mbox{\hyperlink{classclient_1_1_client_af916950def51076b8715dc10d1ac33fb}{data\+\_\+message\+\_\+size}}
+\item 
+\mbox{\hyperlink{classclient_1_1_client_af3c9a34b9f0d62a92e01701947fef518}{sampling\+\_\+rate}}
+\item 
+\mbox{\hyperlink{classclient_1_1_client_a4a1d5324e5bcc2a81ad4e99855b54e8b}{channels}}
+\item 
+\mbox{\hyperlink{classclient_1_1_client_a3dfc5ac11c107b242739a343e1cee50a}{song\+\_\+length}}
+\item 
+\mbox{\hyperlink{classclient_1_1_client_a289a3c3b991b668b7882d63fae2665ed}{frames\+\_\+in\+\_\+message}}
+\item 
+\mbox{\hyperlink{classclient_1_1_client_a9197b1ec397247b35331e63bf1d9e92d}{frames\+\_\+in\+\_\+song}}
+\item 
+\mbox{\hyperlink{classclient_1_1_client_a2425db200753df47f64e4dcdee52c829}{frames\+\_\+per\+\_\+second}}
+\item 
+\mbox{\hyperlink{classclient_1_1_client_a7be73ebcc2918382399a9d3caa253ab7}{song\+\_\+list}}
+\item 
+\mbox{\hyperlink{classclient_1_1_client_a1028108df48bb52904833cff2f27eb1f}{played\+\_\+frame}}
+\item 
+\mbox{\hyperlink{classclient_1_1_client_adaa3a6454a17be267126d15ce2529df1}{Gui}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 23 of file client.\+py.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classclient_1_1_client_a69d3065fc7ea0880083203666659cd3d}\label{classclient_1_1_client_a69d3065fc7ea0880083203666659cd3d}} 
+\index{client.Client@{client.Client}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!client.Client@{client.Client}}
+\subsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def client.\+Client.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{socket }\end{DoxyParamCaption})}
+
+
+
+Definition at line 24 of file client.\+py.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classclient_1_1_client_a3cd7973d42ff3ffa6fe61a078cd4ebdd}\label{classclient_1_1_client_a3cd7973d42ff3ffa6fe61a078cd4ebdd}} 
+\index{client.Client@{client.Client}!choose\_song@{choose\_song}}
+\index{choose\_song@{choose\_song}!client.Client@{client.Client}}
+\subsubsection{\texorpdfstring{choose\_song()}{choose\_song()}}
+{\footnotesize\ttfamily def client.\+Client.\+choose\+\_\+song (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 70 of file client.\+py.
+
+\mbox{\Hypertarget{classclient_1_1_client_a1be4e39c0bb457fbdd4b01001c1fd2e0}\label{classclient_1_1_client_a1be4e39c0bb457fbdd4b01001c1fd2e0}} 
+\index{client.Client@{client.Client}!get\_channels@{get\_channels}}
+\index{get\_channels@{get\_channels}!client.Client@{client.Client}}
+\subsubsection{\texorpdfstring{get\_channels()}{get\_channels()}}
+{\footnotesize\ttfamily def client.\+Client.\+get\+\_\+channels (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 89 of file client.\+py.
+
+\mbox{\Hypertarget{classclient_1_1_client_aa20f7f8ab952191d709158a5bc5e33cb}\label{classclient_1_1_client_aa20f7f8ab952191d709158a5bc5e33cb}} 
+\index{client.Client@{client.Client}!get\_data\_message\_size@{get\_data\_message\_size}}
+\index{get\_data\_message\_size@{get\_data\_message\_size}!client.Client@{client.Client}}
+\subsubsection{\texorpdfstring{get\_data\_message\_size()}{get\_data\_message\_size()}}
+{\footnotesize\ttfamily def client.\+Client.\+get\+\_\+data\+\_\+message\+\_\+size (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 83 of file client.\+py.
+
+\mbox{\Hypertarget{classclient_1_1_client_a1ea688c381f714976f489873002bac8c}\label{classclient_1_1_client_a1ea688c381f714976f489873002bac8c}} 
+\index{client.Client@{client.Client}!get\_sampling@{get\_sampling}}
+\index{get\_sampling@{get\_sampling}!client.Client@{client.Client}}
+\subsubsection{\texorpdfstring{get\_sampling()}{get\_sampling()}}
+{\footnotesize\ttfamily def client.\+Client.\+get\+\_\+sampling (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 77 of file client.\+py.
+
+\mbox{\Hypertarget{classclient_1_1_client_a41a5b2936e0d2d529bbe83b3ee3c2a5f}\label{classclient_1_1_client_a41a5b2936e0d2d529bbe83b3ee3c2a5f}} 
+\index{client.Client@{client.Client}!get\_song\_length@{get\_song\_length}}
+\index{get\_song\_length@{get\_song\_length}!client.Client@{client.Client}}
+\subsubsection{\texorpdfstring{get\_song\_length()}{get\_song\_length()}}
+{\footnotesize\ttfamily def client.\+Client.\+get\+\_\+song\+\_\+length (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 95 of file client.\+py.
+
+\mbox{\Hypertarget{classclient_1_1_client_a3750b6fec748f30f7f743fd1ce6959ec}\label{classclient_1_1_client_a3750b6fec748f30f7f743fd1ce6959ec}} 
+\index{client.Client@{client.Client}!get\_songs@{get\_songs}}
+\index{get\_songs@{get\_songs}!client.Client@{client.Client}}
+\subsubsection{\texorpdfstring{get\_songs()}{get\_songs()}}
+{\footnotesize\ttfamily def client.\+Client.\+get\+\_\+songs (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 52 of file client.\+py.
+
+\mbox{\Hypertarget{classclient_1_1_client_af2db73fbc5f326a580fd7996af13c698}\label{classclient_1_1_client_af2db73fbc5f326a580fd7996af13c698}} 
+\index{client.Client@{client.Client}!handle\_input@{handle\_input}}
+\index{handle\_input@{handle\_input}!client.Client@{client.Client}}
+\subsubsection{\texorpdfstring{handle\_input()}{handle\_input()}}
+{\footnotesize\ttfamily def client.\+Client.\+handle\+\_\+input (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 138 of file client.\+py.
+
+\mbox{\Hypertarget{classclient_1_1_client_a3b9a4e393333a884eae6783f272e6d64}\label{classclient_1_1_client_a3b9a4e393333a884eae6783f272e6d64}} 
+\index{client.Client@{client.Client}!initialize\_audio\_stream@{initialize\_audio\_stream}}
+\index{initialize\_audio\_stream@{initialize\_audio\_stream}!client.Client@{client.Client}}
+\subsubsection{\texorpdfstring{initialize\_audio\_stream()}{initialize\_audio\_stream()}}
+{\footnotesize\ttfamily def client.\+Client.\+initialize\+\_\+audio\+\_\+stream (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 119 of file client.\+py.
+
+\mbox{\Hypertarget{classclient_1_1_client_ad422023bb1c71a266d1065cf270902e4}\label{classclient_1_1_client_ad422023bb1c71a266d1065cf270902e4}} 
+\index{client.Client@{client.Client}!play\_audio@{play\_audio}}
+\index{play\_audio@{play\_audio}!client.Client@{client.Client}}
+\subsubsection{\texorpdfstring{play\_audio()}{play\_audio()}}
+{\footnotesize\ttfamily def client.\+Client.\+play\+\_\+audio (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 153 of file client.\+py.
+
+\mbox{\Hypertarget{classclient_1_1_client_abbcdbabd70d9d67a2378f3412ae8f5db}\label{classclient_1_1_client_abbcdbabd70d9d67a2378f3412ae8f5db}} 
+\index{client.Client@{client.Client}!play\_streamed\_data@{play\_streamed\_data}}
+\index{play\_streamed\_data@{play\_streamed\_data}!client.Client@{client.Client}}
+\subsubsection{\texorpdfstring{play\_streamed\_data()}{play\_streamed\_data()}}
+{\footnotesize\ttfamily def client.\+Client.\+play\+\_\+streamed\+\_\+data (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{audio\+\_\+frame }\end{DoxyParamCaption})}
+
+
+
+Definition at line 127 of file client.\+py.
+
+\mbox{\Hypertarget{classclient_1_1_client_aa136a25c0d00452c3ec1d229285f2e34}\label{classclient_1_1_client_aa136a25c0d00452c3ec1d229285f2e34}} 
+\index{client.Client@{client.Client}!retrieve\_audio\_data@{retrieve\_audio\_data}}
+\index{retrieve\_audio\_data@{retrieve\_audio\_data}!client.Client@{client.Client}}
+\subsubsection{\texorpdfstring{retrieve\_audio\_data()}{retrieve\_audio\_data()}}
+{\footnotesize\ttfamily def client.\+Client.\+retrieve\+\_\+audio\+\_\+data (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 101 of file client.\+py.
+
+\mbox{\Hypertarget{classclient_1_1_client_a1ad22cceab7abf799d72603c012e4bcd}\label{classclient_1_1_client_a1ad22cceab7abf799d72603c012e4bcd}} 
+\index{client.Client@{client.Client}!stop\_audio\_stream@{stop\_audio\_stream}}
+\index{stop\_audio\_stream@{stop\_audio\_stream}!client.Client@{client.Client}}
+\subsubsection{\texorpdfstring{stop\_audio\_stream()}{stop\_audio\_stream()}}
+{\footnotesize\ttfamily def client.\+Client.\+stop\+\_\+audio\+\_\+stream (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 133 of file client.\+py.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classclient_1_1_client_a4a1d5324e5bcc2a81ad4e99855b54e8b}\label{classclient_1_1_client_a4a1d5324e5bcc2a81ad4e99855b54e8b}} 
+\index{client.Client@{client.Client}!channels@{channels}}
+\index{channels@{channels}!client.Client@{client.Client}}
+\subsubsection{\texorpdfstring{channels}{channels}}
+{\footnotesize\ttfamily client.\+Client.\+channels}
+
+
+
+Definition at line 31 of file client.\+py.
+
+\mbox{\Hypertarget{classclient_1_1_client_a4cd9cd6ca5116719e5740d8c613aa6fd}\label{classclient_1_1_client_a4cd9cd6ca5116719e5740d8c613aa6fd}} 
+\index{client.Client@{client.Client}!data@{data}}
+\index{data@{data}!client.Client@{client.Client}}
+\subsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily client.\+Client.\+data}
+
+
+
+Definition at line 28 of file client.\+py.
+
+\mbox{\Hypertarget{classclient_1_1_client_af916950def51076b8715dc10d1ac33fb}\label{classclient_1_1_client_af916950def51076b8715dc10d1ac33fb}} 
+\index{client.Client@{client.Client}!data\_message\_size@{data\_message\_size}}
+\index{data\_message\_size@{data\_message\_size}!client.Client@{client.Client}}
+\subsubsection{\texorpdfstring{data\_message\_size}{data\_message\_size}}
+{\footnotesize\ttfamily client.\+Client.\+data\+\_\+message\+\_\+size}
+
+
+
+Definition at line 29 of file client.\+py.
+
+\mbox{\Hypertarget{classclient_1_1_client_a289a3c3b991b668b7882d63fae2665ed}\label{classclient_1_1_client_a289a3c3b991b668b7882d63fae2665ed}} 
+\index{client.Client@{client.Client}!frames\_in\_message@{frames\_in\_message}}
+\index{frames\_in\_message@{frames\_in\_message}!client.Client@{client.Client}}
+\subsubsection{\texorpdfstring{frames\_in\_message}{frames\_in\_message}}
+{\footnotesize\ttfamily client.\+Client.\+frames\+\_\+in\+\_\+message}
+
+
+
+Definition at line 33 of file client.\+py.
+
+\mbox{\Hypertarget{classclient_1_1_client_a9197b1ec397247b35331e63bf1d9e92d}\label{classclient_1_1_client_a9197b1ec397247b35331e63bf1d9e92d}} 
+\index{client.Client@{client.Client}!frames\_in\_song@{frames\_in\_song}}
+\index{frames\_in\_song@{frames\_in\_song}!client.Client@{client.Client}}
+\subsubsection{\texorpdfstring{frames\_in\_song}{frames\_in\_song}}
+{\footnotesize\ttfamily client.\+Client.\+frames\+\_\+in\+\_\+song}
+
+
+
+Definition at line 34 of file client.\+py.
+
+\mbox{\Hypertarget{classclient_1_1_client_a2425db200753df47f64e4dcdee52c829}\label{classclient_1_1_client_a2425db200753df47f64e4dcdee52c829}} 
+\index{client.Client@{client.Client}!frames\_per\_second@{frames\_per\_second}}
+\index{frames\_per\_second@{frames\_per\_second}!client.Client@{client.Client}}
+\subsubsection{\texorpdfstring{frames\_per\_second}{frames\_per\_second}}
+{\footnotesize\ttfamily client.\+Client.\+frames\+\_\+per\+\_\+second}
+
+
+
+Definition at line 35 of file client.\+py.
+
+\mbox{\Hypertarget{classclient_1_1_client_adaa3a6454a17be267126d15ce2529df1}\label{classclient_1_1_client_adaa3a6454a17be267126d15ce2529df1}} 
+\index{client.Client@{client.Client}!Gui@{Gui}}
+\index{Gui@{Gui}!client.Client@{client.Client}}
+\subsubsection{\texorpdfstring{Gui}{Gui}}
+{\footnotesize\ttfamily client.\+Client.\+Gui}
+
+
+
+Definition at line 41 of file client.\+py.
+
+\mbox{\Hypertarget{classclient_1_1_client_a1028108df48bb52904833cff2f27eb1f}\label{classclient_1_1_client_a1028108df48bb52904833cff2f27eb1f}} 
+\index{client.Client@{client.Client}!played\_frame@{played\_frame}}
+\index{played\_frame@{played\_frame}!client.Client@{client.Client}}
+\subsubsection{\texorpdfstring{played\_frame}{played\_frame}}
+{\footnotesize\ttfamily client.\+Client.\+played\+\_\+frame}
+
+
+
+Definition at line 40 of file client.\+py.
+
+\mbox{\Hypertarget{classclient_1_1_client_af3c9a34b9f0d62a92e01701947fef518}\label{classclient_1_1_client_af3c9a34b9f0d62a92e01701947fef518}} 
+\index{client.Client@{client.Client}!sampling\_rate@{sampling\_rate}}
+\index{sampling\_rate@{sampling\_rate}!client.Client@{client.Client}}
+\subsubsection{\texorpdfstring{sampling\_rate}{sampling\_rate}}
+{\footnotesize\ttfamily client.\+Client.\+sampling\+\_\+rate}
+
+
+
+Definition at line 30 of file client.\+py.
+
+\mbox{\Hypertarget{classclient_1_1_client_a2c7ab020d8f44b7a1dc077933e479cfc}\label{classclient_1_1_client_a2c7ab020d8f44b7a1dc077933e479cfc}} 
+\index{client.Client@{client.Client}!socket@{socket}}
+\index{socket@{socket}!client.Client@{client.Client}}
+\subsubsection{\texorpdfstring{socket}{socket}}
+{\footnotesize\ttfamily client.\+Client.\+socket}
+
+
+
+Definition at line 25 of file client.\+py.
+
+\mbox{\Hypertarget{classclient_1_1_client_a3dfc5ac11c107b242739a343e1cee50a}\label{classclient_1_1_client_a3dfc5ac11c107b242739a343e1cee50a}} 
+\index{client.Client@{client.Client}!song\_length@{song\_length}}
+\index{song\_length@{song\_length}!client.Client@{client.Client}}
+\subsubsection{\texorpdfstring{song\_length}{song\_length}}
+{\footnotesize\ttfamily client.\+Client.\+song\+\_\+length}
+
+
+
+Definition at line 32 of file client.\+py.
+
+\mbox{\Hypertarget{classclient_1_1_client_a7be73ebcc2918382399a9d3caa253ab7}\label{classclient_1_1_client_a7be73ebcc2918382399a9d3caa253ab7}} 
+\index{client.Client@{client.Client}!song\_list@{song\_list}}
+\index{song\_list@{song\_list}!client.Client@{client.Client}}
+\subsubsection{\texorpdfstring{song\_list}{song\_list}}
+{\footnotesize\ttfamily client.\+Client.\+song\+\_\+list}
+
+
+
+Definition at line 39 of file client.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+client/\mbox{\hyperlink{client_8py}{client.\+py}}\end{DoxyCompactItemize}

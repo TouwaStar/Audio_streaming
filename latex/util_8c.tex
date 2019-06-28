@@ -1,0 +1,147 @@
+\hypertarget{util_8c}{}\section{server/util/util.c File Reference}
+\label{util_8c}\index{server/util/util.c@{server/util/util.c}}
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$ifaddrs.\+h$>$}\newline
+{\ttfamily \#include $<$dirent.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{util_8c_abcfcc969dca8df7944d2bcd1195d604c}{U\+T\+IL}}
+\item 
+\#define \mbox{\hyperlink{util_8c_a21b97df85e65556468b28a576311271c}{S\+Y\+S\+T\+EM}}~\mbox{\hyperlink{util_8c_a3e30c662f9b7dcccc3466253b65e7b1aa3447aa6df6e23ef731f508b276c7cdbc}{P\+O\+S\+IX}}
+\item 
+\#define \mbox{\hyperlink{util_8c_a18729f2eeae081f632853442b7d99f86}{M\+A\+X\+\_\+\+T\+E\+X\+T\+\_\+\+S\+I\+ZE}}~256
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{util_8c_a3e30c662f9b7dcccc3466253b65e7b1a}{S\+YS}} \{ \mbox{\hyperlink{util_8c_a3e30c662f9b7dcccc3466253b65e7b1aa24dfb0dfbc26bfbff6ba7d638f7b9ceb}{W\+I\+N\+D\+O\+WS}} = 1, 
+\mbox{\hyperlink{util_8c_a3e30c662f9b7dcccc3466253b65e7b1aa3447aa6df6e23ef731f508b276c7cdbc}{P\+O\+S\+IX}} = 2
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \mbox{\hyperlink{util_8c_a3ed7418354a3a2891e70475d2e44ee6e}{get\+\_\+own\+\_\+ip}} ()
+\item 
+int \mbox{\hyperlink{util_8c_ae84bfdae0ec7b73cf580228efa76178e}{open\+\_\+file}} (char $\ast$path)
+\item 
+char $\ast$$\ast$ \mbox{\hyperlink{util_8c_a8c1c3671e61de54c97e9280230b20fc7}{get\+\_\+files\+\_\+in\+\_\+directory\+\_\+dynamic}} (char $\ast$directory, int $\ast$number\+\_\+of\+\_\+files)
+\item 
+void \mbox{\hyperlink{util_8c_a6a2eedde6edb4a35e1a8c04a49a26136}{get\+\_\+file\+\_\+stat}} (int fd, struct stat $\ast$file\+\_\+stat)
+\item 
+char $\ast$ \mbox{\hyperlink{util_8c_ab779006f2d6f3a7d4453e05b932e5444}{create\+\_\+path\+\_\+dynamic}} (char $\ast$string\+\_\+a, char $\ast$string\+\_\+b)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{util_8c_a18729f2eeae081f632853442b7d99f86}\label{util_8c_a18729f2eeae081f632853442b7d99f86}} 
+\index{util.c@{util.c}!MAX\_TEXT\_SIZE@{MAX\_TEXT\_SIZE}}
+\index{MAX\_TEXT\_SIZE@{MAX\_TEXT\_SIZE}!util.c@{util.c}}
+\subsubsection{\texorpdfstring{MAX\_TEXT\_SIZE}{MAX\_TEXT\_SIZE}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+T\+E\+X\+T\+\_\+\+S\+I\+ZE~256}
+
+
+
+Definition at line 22 of file util.\+c.
+
+\mbox{\Hypertarget{util_8c_a21b97df85e65556468b28a576311271c}\label{util_8c_a21b97df85e65556468b28a576311271c}} 
+\index{util.c@{util.c}!SYSTEM@{SYSTEM}}
+\index{SYSTEM@{SYSTEM}!util.c@{util.c}}
+\subsubsection{\texorpdfstring{SYSTEM}{SYSTEM}}
+{\footnotesize\ttfamily \#define S\+Y\+S\+T\+EM~\mbox{\hyperlink{util_8c_a3e30c662f9b7dcccc3466253b65e7b1aa3447aa6df6e23ef731f508b276c7cdbc}{P\+O\+S\+IX}}}
+
+
+
+Definition at line 17 of file util.\+c.
+
+\mbox{\Hypertarget{util_8c_abcfcc969dca8df7944d2bcd1195d604c}\label{util_8c_abcfcc969dca8df7944d2bcd1195d604c}} 
+\index{util.c@{util.c}!UTIL@{UTIL}}
+\index{UTIL@{UTIL}!util.c@{util.c}}
+\subsubsection{\texorpdfstring{UTIL}{UTIL}}
+{\footnotesize\ttfamily \#define U\+T\+IL}
+
+
+
+Definition at line 3 of file util.\+c.
+
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{util_8c_a3e30c662f9b7dcccc3466253b65e7b1a}\label{util_8c_a3e30c662f9b7dcccc3466253b65e7b1a}} 
+\index{util.c@{util.c}!SYS@{SYS}}
+\index{SYS@{SYS}!util.c@{util.c}}
+\subsubsection{\texorpdfstring{SYS}{SYS}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{util_8c_a3e30c662f9b7dcccc3466253b65e7b1a}{S\+YS}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WINDOWS@{WINDOWS}!util.c@{util.c}}\index{util.c@{util.c}!WINDOWS@{WINDOWS}}}\mbox{\Hypertarget{util_8c_a3e30c662f9b7dcccc3466253b65e7b1aa24dfb0dfbc26bfbff6ba7d638f7b9ceb}\label{util_8c_a3e30c662f9b7dcccc3466253b65e7b1aa24dfb0dfbc26bfbff6ba7d638f7b9ceb}} 
+W\+I\+N\+D\+O\+WS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{POSIX@{POSIX}!util.c@{util.c}}\index{util.c@{util.c}!POSIX@{POSIX}}}\mbox{\Hypertarget{util_8c_a3e30c662f9b7dcccc3466253b65e7b1aa3447aa6df6e23ef731f508b276c7cdbc}\label{util_8c_a3e30c662f9b7dcccc3466253b65e7b1aa3447aa6df6e23ef731f508b276c7cdbc}} 
+P\+O\+S\+IX&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 12 of file util.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{util_8c_ab779006f2d6f3a7d4453e05b932e5444}\label{util_8c_ab779006f2d6f3a7d4453e05b932e5444}} 
+\index{util.c@{util.c}!create\_path\_dynamic@{create\_path\_dynamic}}
+\index{create\_path\_dynamic@{create\_path\_dynamic}!util.c@{util.c}}
+\subsubsection{\texorpdfstring{create\_path\_dynamic()}{create\_path\_dynamic()}}
+{\footnotesize\ttfamily char$\ast$ create\+\_\+path\+\_\+dynamic (\begin{DoxyParamCaption}\item[{char $\ast$}]{string\+\_\+a,  }\item[{char $\ast$}]{string\+\_\+b }\end{DoxyParamCaption})}
+
+Joins the two strings provided in order to create a path returns a char pointer to dynamically allocated memory. 
+
+Definition at line 114 of file util.\+c.
+
+\mbox{\Hypertarget{util_8c_a6a2eedde6edb4a35e1a8c04a49a26136}\label{util_8c_a6a2eedde6edb4a35e1a8c04a49a26136}} 
+\index{util.c@{util.c}!get\_file\_stat@{get\_file\_stat}}
+\index{get\_file\_stat@{get\_file\_stat}!util.c@{util.c}}
+\subsubsection{\texorpdfstring{get\_file\_stat()}{get\_file\_stat()}}
+{\footnotesize\ttfamily void get\+\_\+file\+\_\+stat (\begin{DoxyParamCaption}\item[{int}]{fd,  }\item[{struct stat $\ast$}]{file\+\_\+stat }\end{DoxyParamCaption})}
+
+
+
+Definition at line 100 of file util.\+c.
+
+\mbox{\Hypertarget{util_8c_a8c1c3671e61de54c97e9280230b20fc7}\label{util_8c_a8c1c3671e61de54c97e9280230b20fc7}} 
+\index{util.c@{util.c}!get\_files\_in\_directory\_dynamic@{get\_files\_in\_directory\_dynamic}}
+\index{get\_files\_in\_directory\_dynamic@{get\_files\_in\_directory\_dynamic}!util.c@{util.c}}
+\subsubsection{\texorpdfstring{get\_files\_in\_directory\_dynamic()}{get\_files\_in\_directory\_dynamic()}}
+{\footnotesize\ttfamily char$\ast$$\ast$ get\+\_\+files\+\_\+in\+\_\+directory\+\_\+dynamic (\begin{DoxyParamCaption}\item[{char $\ast$}]{directory,  }\item[{int $\ast$}]{number\+\_\+of\+\_\+files }\end{DoxyParamCaption})}
+
+Returns a dynamically allocated pointer containing all the files found at the specified directory with the exception of files beggining with \textquotesingle{}.\textquotesingle{}. This function is also provided an int pointer to which it will write the number of files that were found in the directory. 
+
+Definition at line 69 of file util.\+c.
+
+\mbox{\Hypertarget{util_8c_a3ed7418354a3a2891e70475d2e44ee6e}\label{util_8c_a3ed7418354a3a2891e70475d2e44ee6e}} 
+\index{util.c@{util.c}!get\_own\_ip@{get\_own\_ip}}
+\index{get\_own\_ip@{get\_own\_ip}!util.c@{util.c}}
+\subsubsection{\texorpdfstring{get\_own\_ip()}{get\_own\_ip()}}
+{\footnotesize\ttfamily char$\ast$ get\+\_\+own\+\_\+ip (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Returns own ip address 
+
+Definition at line 41 of file util.\+c.
+
+\mbox{\Hypertarget{util_8c_ae84bfdae0ec7b73cf580228efa76178e}\label{util_8c_ae84bfdae0ec7b73cf580228efa76178e}} 
+\index{util.c@{util.c}!open\_file@{open\_file}}
+\index{open\_file@{open\_file}!util.c@{util.c}}
+\subsubsection{\texorpdfstring{open\_file()}{open\_file()}}
+{\footnotesize\ttfamily int open\+\_\+file (\begin{DoxyParamCaption}\item[{char $\ast$}]{path }\end{DoxyParamCaption})}
+
+Opens the file at specified path, returns the file descriptor. 
+
+Definition at line 52 of file util.\+c.
+
